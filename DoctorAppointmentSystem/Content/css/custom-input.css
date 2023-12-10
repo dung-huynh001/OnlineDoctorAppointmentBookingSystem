@@ -1,0 +1,74 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+.custom-input-box {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.custom-icon-wrapper {
+    min-width: 46px;
+    padding: 10px;
+    background: #999;
+    border: 1px solid #999;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+    .custom-icon-wrapper i {
+        font-size: 1.3em;
+    }
+
+.custom-input-box input, select {
+    min-width: calc(100% - 46px);
+    padding: 10px;
+    border: 1px solid #999;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 1em;
+    background: inherit;
+    color: #333;
+}
+
+.custom-input-box .custom-input-title {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: #333;
+    transition: all 0.5s ease;
+}
+
+.custom-input-box input:valid ~ .custom-input-title,
+.custom-input-box input:focus ~ .custom-input-title {
+    color: #333;
+    transform: translateX(15px) translateY(-7px);
+    font-size: 0.7em;
+    padding: 0 10px;
+    background: #fff;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+
+.custom-input-box input:focus {
+    box-shadow: 0px 0px 5px #333;
+}
+
+.custom-input-box select:valid ~ .custom-input-title,
+.custom-input-box select:focus ~ .custom-input-title {
+    color: #333;
+    transform: translateX(15px) translateY(-7px);
+    font-size: 0.7em;
+    padding: 0 10px;
+    background: #fff;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+
+.custom-input-box select:focus {
+    box-shadow: 0px 0px 5px #333;
+}

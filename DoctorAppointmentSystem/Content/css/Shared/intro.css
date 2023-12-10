@@ -1,0 +1,172 @@
+﻿/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+}
+
+a {
+    color: #1977cc;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #3291e6;
+        text-decoration: none;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", sans-serif;
+}
+
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+    width: 100%;
+    min-height: 110vh;
+    background-size: cover;
+    margin-bottom: -50px;
+    margin-top: -80px;
+}
+
+    #hero .container {
+        position: relative;
+    }
+
+    #hero h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        text-transform: uppercase;
+        color: #2c4964;
+    }
+
+    #hero h2 {
+        color: #2c4964;
+        margin: 10px 0 0 0;
+        font-size: 24px;
+    }
+
+    #hero .btn-get-started {
+        font-family: "Raleway", sans-serif;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 12px 35px;
+        margin-top: 30px;
+        border-radius: 50px;
+        transition: 0.5s;
+        color: #fff;
+        background: #1977cc;
+    }
+
+        #hero .btn-get-started:hover {
+            background: #3291e6;
+        }
+
+@media (max-height: 600px) {
+    #hero {
+        background-image: url('../../../img/bg-img-mobile.jpg');
+        height: 110vh;
+    }
+}
+
+@media (max-width: 992px) {
+    #hero {
+        background-image: url('../../../img/bg-img-desktop-md.jpg');
+        margin-bottom: 0;
+        height: 100vh;
+    }
+
+        #hero .container {
+            padding-bottom: 63px;
+        }
+
+        #hero h1 {
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        #hero h2 {
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 30px;
+        }
+}
+
+@media (max-width: 1590px) {
+    #hero {
+        background-image: url('../../../img/bg-img-desktop-md.jpg');
+        background-attachment: fixed;
+    }
+}
+
+@media (min-width: 1591px) {
+    #hero {
+        background-image: url('../../../img/bg-img-desktop-lg.jpg');
+        background-attachment: fixed;
+    }
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.section-bg {
+    background-color: #f1f7fd;
+}
+
+.section-title {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+        color: #2c4964;
+    }
+
+        .section-title h2::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 120px;
+            height: 1px;
+            background: #ddd;
+            bottom: 1px;
+            left: calc(50% - 60px);
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #1977cc;
+            bottom: 0;
+            left: calc(50% - 20px);
+        }
+
+    .section-title p {
+        margin-bottom: 0;
+    }

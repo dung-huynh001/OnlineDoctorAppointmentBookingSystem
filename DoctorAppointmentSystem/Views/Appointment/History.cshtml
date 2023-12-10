@@ -1,0 +1,134 @@
+﻿
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<link href="~/Content/css/appointmentHistory.css" rel="stylesheet" />
+
+
+<h3 class="text-center mt-3 mb-3 font-weight-bold">Appointment History</h3>
+
+<div class="col-12 col-sm-12 col-md-12 content-wrapper pr-0 pl-0 pr-md-2 pl-md-2 mt-4 mb-4">
+    <table id="historyTbl" class="dt-responsive display w-100">
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="makeAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="makeAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="makeAppointmentModalLabel">View Appointment</h5>
+            </div>
+            <div class="modal-body">
+                <form class="col-12 col-sm-12 col-md-12" id="appointmentForm">
+                    <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+
+                        <!--Doctor's Info-->
+                        <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                            <span class="info-label">Doctor's Info</span>
+
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <p id="doctorName"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Gender</span>
+                                <p id="doctorGender"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Speciality</span>
+                                <p id="speciality"></p>
+                            </div>
+
+                        </div>
+                        <!--Patient's Info-->
+                        <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                            <span class="info-label">Patient's Info</span>
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <p id="patientName"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Date of Birth</span>
+                                <p id="dateOfBirth"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Gender</span>
+                                <p id="patientGender"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Appointment's Info-->
+                    <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row">
+                        <span class="info-label">Appointment Details</span>
+                        <div class="col-12 col-sm-12 col-md-4 pl-0 pl-sm-0 pl-md-0 pr-0 pr-sm-0 pr-md-2">
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Mode of Consultant</span>
+                                <select name="modeOfConsultant" class="custom-select" id="modeOfConsultant" required="required">
+                                    <option selected disabled hidden>Select mode of consultant</option>
+                                    @{ var modeOfConsultant = ViewBag.modeOfConsultant;
+                                        foreach (var mode in modeOfConsultant)
+                                        {
+                            <option value=@mode.ID>@mode.PARAVAL</option> } }
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Consultant Type</span>
+                                <select name="consultantType" class="custom-select" id="consultantType" required="required">
+                                    <option selected disabled hidden>Select type of consultant</option>
+                                    @{ var consultantType = ViewBag.consultantType;
+                                        foreach (var type in consultantType)
+                                        {
+                            <option value=@type.ID>@type.PARAVAL</option> } }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-8 pr-0 pl-0 row" style="padding-right: 0;">
+                            <div class="col-6 col-sm-6 col-md-6 pl-0 pl-md-3">
+                                <div class="input-box">
+                                    <span>Date of Consultation</span>
+                                    <p id="dateOfConsultation"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Time</span>
+                                    <p id="consultationTime"></p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 pr-0">
+                                <div class="input-box">
+                                    <span>Appointment Date</span>
+                                    <p id="appointmentDate"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Time</span>
+                                    <p id="appointmentTime"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 info-wrapper">
+                        <span class="info-label">Medical Notes</span>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Symtoms</span>
+                            <textarea class="form-control" id="symtoms" placeholder="Note down here any current symptoms (if any).."></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Existing Illness</span>
+                            <textarea class="form-control" id="existingIllness" placeholder="Note down here any existing illness (if any)."></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Drug Alergies</span>
+                            <textarea class="form-control" id="drugAlergies" placeholder="Note down here any drug allergies or allergies to any components of medications (if any)."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancel">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/js/appointmentHistory.js"></script>
+}

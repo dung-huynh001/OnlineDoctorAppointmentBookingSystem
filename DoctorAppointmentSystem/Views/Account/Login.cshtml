@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+@model DoctorAppointmentSystem.Models.Account.Login.LoginViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Online Doctor Appoinment</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    @Styles.Render("~/Content/sweetalert/css")
+    @Styles.Render("~/Content/fontawesome/css")
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic mr-4" data-tilt>
+                    <img src="~/img/login-intro-img.png" alt="image" />
+                </div>
+                <form id="login-form" class="login100-form validate-form d-flex flex-column justify-content-center">
+                    <span class="login100-form-title font-weight-bold">
+                        Welcome to CUSC
+                    </span>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text login-input"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input id="username" class="form-control " name="Username" onkeypress="return validateUsername(event)" placeholder="Username" type="text" pattern="^[a-zA-Z0-9]+$" maxlength="50" autocomplete="off">
+                    </div> <!-- Username -->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text login-input"><i class="fa fa-lock"></i></span>
+                        </div>
+                        <input id="password" class="form-control paswd-on-off" name="Password" onkeypress="return validatePassword(event)" placeholder="Password" type="password" pattern="^\S+$" maxlength="256" autocomplete="off">
+                    </div> <!-- Password -->
+                    <div class="form-check form-group  input-group">
+                        <input type="checkbox" class="form-check-input" id="check-show-password" onclick="showPass()">
+                        <label class="form-check-label mt-0 pt-0 txt1" style="font-size: 14px" for="check-show-password">Show password</label>
+                    </div><!-- Check Box Show Password  -->
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+
+                        <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block"> Login </button>
+                    </div> <!-- Submit button -->
+
+                    <div class="text-center pt-3">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Password?
+                        </a>
+                    </div>
+
+                    <div class="text-center pt-5 ml-2">
+                        <a class="txt2" href="@Url.Action("Register")">
+                            Create your Account
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/js/validateInput.js"></script>
+    <script src="~/Scripts/js/login.js"></script>
+</body>
+</html>

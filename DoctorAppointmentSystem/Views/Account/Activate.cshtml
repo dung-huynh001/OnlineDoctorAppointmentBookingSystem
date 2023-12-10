@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Online Doctor Appoinment</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        body {
+            height: 100vh;
+            background-image: url('../../img/bg-img.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div id="register-wrapper">
+        <div class="container">
+            <div class="card">
+                <article class="card-body mx-auto d-flex flex-column justify-content-center align-items-center" style="max-width: 650px; min-height:60vh;">
+                    <h4 class="card-title mt-3 text-center">@ViewBag.message</h4>
+                    @{
+                        if (ViewBag.message == "Congratulations! Your account has been successfully activated.")
+                        {
+                            <a role="button" href="@Url.Action("Login", "Account")" class="btn btn-primary" style="margin: 0 auto;">Go to Login</a>
+                        }
+                        else if (ViewBag.message == "Token not found.")
+                        {
+
+                        }
+                        else
+                        {
+                            <p class="text-center">If the activation link has expired, please click on the button.</p>
+                            <span id="timer" class="text-muted"></span>
+                            <a id="btnResend" role="button" class="btn btn-primary text-light" style="margin: 0 auto;">Resend activation link</a>
+                        }
+                    }
+                </article>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+        var btnResend = document.getElementById("btnResend");
+        var timer = document.getElementById("timer");
+
+
+        btnResend.addEventListener("click", function (event) {
+            var remainingTime = 60;
+            var interval;
+
+            event.preventDefault();
+
+            btnResend.disabled = true;
+            btnResend.style.pointerEvents = "none";
+
+            interval = setInterval(function () {
+                timer.textContent = " Resend after: " + remainingTime + "s";
+                remainingTime--;
+
+                if (remainingTime < 0) {
+                    clearInterval(interval);
+                    timer.textContent = "";
+                    btnResend.disabled = false;
+                    btnResend.style.pointerEvents = "all";
+                }
+            }, 1000);
+        });
+
+    </script>
+</body>
+</html>

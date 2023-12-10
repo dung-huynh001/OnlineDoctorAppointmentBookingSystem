@@ -1,0 +1,219 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/Areas/Doctor/registration.css" rel="stylesheet" />
+@Styles.Render("~/Content/sweetalert/css")
+<script src="~/Scripts/js/validateInput.js"></script>
+
+<style>
+    .input-box .custom-select[disabled] {
+        color: inherit;
+        background-color: inherit;
+        border-top: inherit;
+    }
+</style>
+
+<div class="col-12 d-flex justify-content-between flex-nowrap mt-3 p-0" style="gap: 10px!important">
+    <div class="col-8 search-box p-0">
+        <div class="input-box">
+            <input type="text" name="NationalID" id="searchNationalID" autocomplete="off" required />
+            <span id="nationID-label"></span>
+        </div>
+        <div class="input-box">
+            <input type="text" name="Name" id="searchName" autocomplete="off" required />
+            <span id="name-label">Name</span>
+        </div>
+        <button class="btn btn-secondary" id="btnSearch">Search</button>
+    </div>
+
+    <button class="btn btn-primary" id="btnAddMember" data-toggle="modal" data-target="#addMemberModal">Add New Member</button>
+</div>
+<div class="col-12 p-3 table-wrapper mt-3">
+    <table id="registrationTbl" class="dt-responsive display nowrap" style="width: 100%">
+    </table>
+</div>
+
+
+<div class="modalWrapper" style="font-size: 16px;">
+    <!-- Modal -->
+    <div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="addMemberModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="addMemberModalLabel">Add New Member</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12 col-sm-12 col-md-12" id="addMemberForm">
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+                            <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row">
+                                <span class="info-label">Account</span>
+                                <div class="input-box">
+                                    <span class="input-label">Username</span>
+                                    <input type="text" name="Username" id="username" value="" required autocomplete="off" onkeypress="return validateUsername(event)" maxlength="50" />
+
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Password</span>
+                                    <input type="password" name="Password" id="password" value="" required autocomplete="off" onkeypress="return validatePassword(event)" maxlength="50" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                                <span class="info-label">Personal Info</span>
+                                <div class="input-box">
+                                    <span class="input-label">Full Name</span>
+                                    <input type="text" name="FullName" id="fullName" value="" required onkeypress="return validateUnicode(event)" autocomplete="off" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Date of Birth</span>
+                                    <input type="text" name="DateOfBirth" id="dateOfBirth" required autocomplete="off" onfocus="this.type='date'" onblur="(this.type='text')" />
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="input-label">National ID</span>
+                                    <input type="text" name="NationalID" id="nationalID" value="" required autocomplete="off" onkeypress="return validateNumber(event)" maxlength="10" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Gender</span>
+                                    @Html.DropDownList("Gender", ViewBag.genders as SelectList, new { @class = "custom-select", @id = "gender" })
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 info-wrapper">
+                                <span class="info-label">Contact</span>
+                                <div class="input-box">
+                                    <span class="input-label">Mobile</span>
+                                    <input type="text" name="Mobile" id="mobile" value="" required onkeypress="return validateNumber(event)" autocomplete="off" maxlength="10" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Email</span>
+                                    <input type="email" name="Email" id="email" value="" required autocomplete="off" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Address</span>
+                                    <input type="text" name="Address" id="address" value="" required onkeypress="return validateUnicode(event)" autocomplete="off" />
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper d-flex justify-content-between row">
+                                <span class="info-label">Appointment Details</span>
+                                <div class="col-12 col-sm-12 col-md-6 p-0">
+                                    <div class="input-box">
+                                        <span class="input-label">Mode of Consultant</span>
+                                        @Html.DropDownList("ModeOfConsultant", ViewBag.modeOfConsultant as SelectList, new { @class = "custom-select", @id = "modeOfConsultant" })
+                                    </div>
+                                    <div class="input-box">
+                                        <span class="input-label">Consultant Type</span>
+                                        @Html.DropDownList("ConsultantType", ViewBag.consultantType as SelectList, new { @class = "custom-select", @id = "consultantType" })
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-5 p-0">
+                                    <div class="input-box">
+                                        <span class="input-label">Appointment Date</span>
+                                        <input type="text" name="AppointmentDate" id="appointmentDate" value="" onfocus="this.type='date'" onblur="this.type='text'" required />
+                                    </div>
+                                    <div class="input-box">
+                                        <span class="input-label">Time</span>
+                                        <input type="time" name="Time" id="time" value="" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal" id="btnCancel">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modalWrapper" style="font-size: 16px;">
+    <!-- Modal -->
+    <div class="modal fade" id="makeAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="makeAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="makeAppointmentModalLabel">Make Appointment</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12 col-sm-12 col-md-12" id="makeAppointmentForm">
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+                            <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                                <span class="info-label">Personal Info</span>
+                                <div class="input-box">
+                                    <span class="input-label">Full Name</span>
+                                    <input type="text" name="ApptFullName" id="apptFullName" readonly required autocomplete="off" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Date of Birth</span>
+                                    <input type="date" name="ApptDateOfBirth" id="apptDateOfBirth" required autocomplete="off" readonly />
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="input-label">National ID</span>
+                                    <input type="text" name="ApptNationalID" id="apptNationalID" readonly required autocomplete="off"/>
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Gender</span>
+                                    @Html.DropDownList("ApptGender", ViewBag.genders as SelectList, new { @class = "custom-select", @id = "apptGender", @tabindex = "-1" })
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 info-wrapper">
+                                <span class="info-label">Contact</span>
+                                <div class="input-box">
+                                    <span class="input-label">Mobile</span>
+                                    <input type="text" name="ApptMobile" id="apptMobile" readonly required autocomplete="off" maxlength="10" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Email</span>
+                                    <input type="email" name="ApptEmail" id="apptEmail" readonly required autocomplete="off" />
+                                </div>
+                                <div class="input-box">
+                                    <span class="input-label">Address</span>
+                                    <input type="text" name="ApptAddress" id="apptAddress" readonly required autocomplete="off" />
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper d-flex justify-content-between row">
+                                <span class="info-label">Appointment Details</span>
+                                <div class="col-12 col-sm-12 col-md-6 p-0">
+                                    <div class="input-box">
+                                        <span class="input-label">Mode of Consultant</span>
+                                        @Html.DropDownList("ApptModeOfConsultant", ViewBag.modeOfConsultant as SelectList, new { @class = "custom-select", @id = "apptModeOfConsultant" })
+                                    </div>
+                                    <div class="input-box">
+                                        <span class="input-label">Consultant Type</span>
+                                        @Html.DropDownList("ApptConsultantType", ViewBag.consultantType as SelectList, new { @class = "custom-select", @id = "apptConsultantType" })
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-5 p-0">
+                                    <div class="input-box">
+                                        <span class="input-label">Appointment Date</span>
+                                        <input type="text" name="ApptAppointmentDate" id="apptAppointmentDate" value="" onfocus="this.type='date'" onblur="this.type='text'" required />
+                                    </div>
+                                    <div class="input-box">
+                                        <span class="input-label">Time</span>
+                                        <input type="time" name="ApptTime" id="apptTime" value="" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal" id="btnCancel">Close</button>
+                    <button data-id="" type="button" class="btn btn-primary" id="btnMakeAppt">Make Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/js/Areas/Doctor/registration.js"></script>
+}

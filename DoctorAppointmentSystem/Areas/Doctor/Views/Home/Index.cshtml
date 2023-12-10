@@ -1,0 +1,128 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Styles.Render("~/Content/doctor/dashboard")
+
+<div class="row m-2">
+    <!-- Status -->
+    <article class="col-12 ">
+        <h3 class="text-center mt-3 mb-3 font-weight-bold">Dashboard</h3>
+        <hr class="custom-hr-primary" />
+        <h4>Status</h4>
+        <div class=" d-flex flex-wrap justify-content-center mt-1">
+            <div class="custom-card appt-gird-l ">
+
+                <div class="row custom-card-body d-flex flex-wrap justify-content-between align-items-center">
+
+                    <div class="col-8 col-md-8">
+                        <a href="@Url.Action("Index", "ConfirmedAppt", new {area = "Doctor"})">
+                            <p class="h3">@ViewBag.todayAppt</p>
+                            <h5 class="custom-card-title">Today Appointments</h5>
+                        </a>
+                    </div>
+
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fa-solid fa-file-medical"></i>
+
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="custom-card appt-gird-l ">
+
+                <div class="row custom-card-body d-flex flex-wrap justify-content-between align-items-center">
+
+                    <div class="col-8 col-md-8">
+                        <a href="@Url.Action("Index", "Appointments", new {area = "Doctor"})">
+                            <p class="h3">@ViewBag.newBooking</p>
+                            <h5 class="custom-card-title">New Booking</h5>
+                        </a>
+                    </div>
+
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="far fa-bookmark"></i>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="custom-card appt-gird-l ">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8">
+                        <a href="@Url.Action("Index", "ConfirmedAppt", new {area = "Doctor"})">
+                            <p class="h3"> @ViewBag.apptConfirm</p>
+                            <span class="custom-card-title h5">Appointments Confirmed</span>
+                        </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fa-solid fa-file-medical"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card appt-gird-l ">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center ">
+                    <div class="col-8 col-md-8">
+                        <a href="@Url.Action("Index", "CompletedAppt", new {area = "Doctor"})">
+                            <p class="h3"> @ViewBag.apptCompleted </p>
+                            <span class="custom-card-title h5">Completed Appointments </span>
+                        </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-calendar-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+
+</div>
+
+<hr />
+<h4 class="m-4">Appointment Schedule</h4>
+
+
+<div id="select-statu-appt" class="input-group mb-3 ml-4  ">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="appt-status-filter">Status</label>
+    </div>
+    <select class="custom-select" id="appt-status-filter">
+        <option value="" selected>_ _ All Status _ _</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirm">Confirmed</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancel">Cancelled</option>
+    </select>
+
+</div>
+<div class="ml-1">
+    <ul>
+        <li style="display:inline-block;"> <span style="display: inline-block; height: 10px; width: 20px; background-color: #ffc107" class="mr-1 ml-4"></span> Pending </li>
+        <li style="display:inline-block;"> <span style="display: inline-block; height: 10px; width: 20px; background-color: #007bff" class="mr-1 ml-4"></span>Confirm</li>
+        <li style="display:inline-block;"> <span style="display: inline-block; height: 10px; width: 20px; background-color: #00ff21" class="mr-1 ml-4"></span>Completed</li>
+        <li style="display:inline-block;"> <span style="display: inline-block; height: 10px; width: 20px; background-color: #dc3545" class="mr-1 ml-4"></span>Cancelled</li>
+        <li style="display:inline-block;"> <span style="display: inline-block; height: 10px; width: 20px; background-color: #747399" class="mr-1 ml-4"></span>Time exceeded</li>
+    </ul>
+</div>
+
+<div class="container-fluid m-2">
+    <div style="max-height:600px;" id='calendar'></div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/momentjs")
+    @Scripts.Render("~/bundles/fullcalendar/js")
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+    @Scripts.Render("~/bundles/doctor/dashboard")
+
+}

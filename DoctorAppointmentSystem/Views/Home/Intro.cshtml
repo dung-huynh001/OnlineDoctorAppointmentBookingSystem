@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Online Doctor Appointment</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/Shared/intro.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="d-flex justify-content-end col-sm-12" style="margin-top: -40px">
+        <a href="@Url.Action("Login", "Account")" role="button" class="mr-4 text-light font-weight-light font-weight-bold">Login</a>
+        <a href="@Url.Action("Register", "Account")" role="button" class="mr-2 text-light font-weight-light font-weight-bold">Register</a>
+    </div>
+    <section id="hero" class="d-flex align-items-center">
+
+        <div class="container">
+            <h1>Welcome to CUSC</h1>
+            <h2>Here we have a team of excellent doctors in many fields of Medicine.</h2>
+            <a href="@Url.Action("MakeAppointment", "Appointment")" class="btn-get-started scrollto">Make Appointment</a>
+        </div>
+    </section><!-- End Hero -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/js/intro.js"></script>
+</body>
+
+</html>

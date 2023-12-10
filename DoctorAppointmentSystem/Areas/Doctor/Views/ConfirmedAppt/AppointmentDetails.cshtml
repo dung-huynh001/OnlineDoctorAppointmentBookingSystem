@@ -1,0 +1,198 @@
+﻿@using DoctorAppointmentSystem.Areas.Doctor.Models.ViewModels;
+@model MemberDetailViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/Areas/Doctor/confirmedAppt.css" rel="stylesheet" />
+@Styles.Render("~/Content/sweetalert/css")
+
+<style>
+    td .error {
+        margin: 0;
+    }
+
+    .info-label {
+        transform: translateX(15px) translateY(-28px);
+    }
+</style>
+
+<article class="shadow p-3 pt-0 mb-sm-3 mb-md-5">
+    <ul class="nav nav-tabs" id="memberDetail" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#information" role="tab" aria-controls="information" aria-selected="true">Infomation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="symtoms-tab" data-toggle="tab" href="#symtoms" role="tab" aria-controls="symtoms" aria-selected="false">Symtoms</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="doctorNoteTabContent">
+        <div class="tab-pane fade show active" id="information" role="tabpanel" aria-labelledby="info-tab">
+            <div class="col-12 col-sm-12 col-md-12 mt-4 mb-4 p-0 pt-4 d-flex justify-content-between flex-wrap">
+                <div class="col-12 col-sm-12 col-md-8 info-wrapper" id="info-1">
+                    <span class="info-label">Patient's Info</span>
+                    <div class="input-box">
+                        <span>Full Name</span>
+                        <p id="fullName">@Model.fullName</p>
+                    </div>
+                    <div class="input-box">
+                        <span>Date of Birth</span>
+                        <p id="dateOfBirth">@Model.dateOfBirth</p>
+                    </div>
+                    <div class="input-box">
+                        <span>Gender</span>
+                        <p id="gender">@Model.gender</p>
+                    </div>
+                    <div class="input-box">
+                        <span>National ID</span>
+                        <p id="gender">@Model.nationalID</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 d-flex justify-content-center mb-4 mb-sm-4 mb-md-0 custom-logo-wrapper" id="info-2">
+                    <div class="custom-site-logo">
+                        <img id="profilePicture" src="@Model.avatar" alt="avatar" class="img-avatar" />
+                    </div>
+                </div>
+
+                <div class="col-md-12 info-wrapper" id="info-3">
+                    <span class="info-label">Contact</span>
+                    <div class="input-box">
+                        <span>Email</span>
+                        <p id="email">@Model.email</p>
+                    </div>
+                    <div class="input-box">
+                        <span>Mobile</span>
+                        <p id="phoneNumber">@Model.phoneNumber</p>
+                    </div>
+                    <div class="input-box">
+                        <span>Address</span>
+                        <p id="address">@Model.address</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row" id="info-4">
+                    <span class="info-label">Appointment Details</span>
+                    <div class="col-12 col-sm-12 col-md-12 pl-0 pr-0 row">
+                        <div class="col-6 col-sm-6 col-md-6 pl-0 pr-3">
+                            <div class="input-box">
+                                <span>Mode of Consultant</span>
+                                <p id="modeOfConsultant">@Model.modeOfConsutant</p>
+                            </div>
+                            <div class="input-box">
+                                <span>Consultant Type</span>
+                                <p id="consultantType">@Model.consultantType</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-6 col-md-6 pl-3 pr-0">
+                            <div class="input-box">
+                                <span>Date of Consultation</span>
+                                <p id="dateOfConsultation">@Model.dateOfConsultation</p>
+                            </div>
+                            <div class="input-box">
+                                <span>Time</span>
+                                <p id="consultationTime">@Model.consultationTime</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-8 pr-0 pl-0 " style="padding-right: 0;">
+
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 p-0" id="appointmentDateWrapper">
+                        <div class="input-box">
+                            <span>Appointment Date</span>
+                            <input type="text" id="appointmentDate" value="@Model.appointmentDate" onfocus="(this.type='date')" onblur="(this.type='text')" />
+                        </div>
+                        <div class="input-box">
+                            <span>Time</span>
+                            <input type="text" id="appointmentTime" value="@Model.appointmentTime" onfocus="(this.type='time')" onblur="(this.type='text')" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end align-items-center" id="info-5">
+                    <a role="button" class="btn btn-danger mr-3 text-light" id="btnCancel" data-appointmentid="@Model.appointmentID">Cancel Appointment</a>
+                    <a role="button" class="btn btn-primary mr-3 text-light" id="btnChangeDate" data-appointmentid="@Model.appointmentID" data-date=""> Change Appointment Date</a>
+                    <a role="button" class="btn btn-secondary text-light" href="@Url.Action("Index", "ConfirmedAppt", new { area = "Doctor"} )">Back</a>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="symtoms" role="tabpanel" aria-labelledby="symtoms-tab">
+            <div class="col-12 col-sm-12 col-md-12 info-wrapper" style="border: none">
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Symtoms</span>
+                    <textarea class="form-control" id="symtoms" placeholder="Note down here any current symptoms (if any)..">@Model.symtoms</textarea>
+                </div>
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Existing Illness</span>
+                    <textarea class="form-control" id="existingIllness" placeholder="Note down here any existing illness (if any).">@Model.existingIllness</textarea>
+                </div>
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Drug Alergies</span>
+                    <textarea class="form-control" id="drugAlergies" placeholder="Note down here any drug allergies or allergies to any components of medications (if any).">@Model.drugAlergies</textarea>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end align-items-center">
+                <a role="button" class="btn btn-danger mr-3 text-light" id="btnCancel" data-appointmentid="@Model.appointmentID">Cancel Appointment</a>
+                <a role="button" class="btn btn-secondary text-light" href="@Url.Action("Index", "ConfirmedAppt", new { area = "Doctor"} )">Back</a>
+            </div>
+        </div>
+
+
+    </div>
+</article>
+
+
+<article class="shadow p-3 pt-0 mb-sm-3 mb-md-5">
+    <h3 class="text-center mt-3 mb-3 font-weight-bold">Doctor Notes</h3>
+    <!--Notes-->
+    <ul class="nav nav-tabs" id="doctorNoteTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="notes-tab" data-toggle="tab" href="#notes" role="tab" aria-controls="notes" aria-selected="true">Notes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="medication-tab" data-toggle="tab" href="#medication" role="tab" aria-controls="medication" aria-selected="false">Medication</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="doctorNoteTabContent" style="min-height: 70vh">
+        <div class="tab-pane fade show active" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+            <div class="col-12 col-sm-12 col-md-12 info-wrapper" style="border: none">
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Diagnosis (*)</span>
+                    <textarea class="form-control" id="diagnosis" placeholder="Diagnosis."></textarea>
+                </div>
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Case Note</span>
+                    <textarea class="form-control" id="caseNote" placeholder="Note down for each specific case (if any)."></textarea>
+                </div>
+                <div class="input-box">
+                    <span class="ml-3 pr-2 pl-2">Advice to Patient (*)</span>
+                    <textarea class="form-control" id="adviceToPatient" placeholder="Advice to Patient."></textarea>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a role="button" class="btn btn-secondary text-light" id="btnResetNotes">Reset</a>
+            </div>
+        </div>
+
+        <!--Medication-->
+        <form class="tab-pane fade d-flex flex-column align-items-end" id="medication" role="tabpanel" aria-labelledby="medication-tab" style="margin-bottom: 50px">
+            <button type="submit" class="btn btn-primary mt-3 mb-3 " id="btnAddRow">Add Row</button>
+            <div class="col-12 table-wrapper p-0 pb-5">
+                <table id="mediacationTbl" class="display table w-100">
+                </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a role="button" class="btn btn-secondary text-light" id="btnResetMedication">Reset</a>
+                <a role="button" class="btn btn-primary ml-3 text-light" id="btnCompleted" data-appointmentid="@Model.appointmentID">Mark as Completed</a>
+            </div>
+        </form>
+    </div>
+</article>
+
+@section scripts{
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/js/validateInput.js"></script>
+    <script src="~/Scripts/js/Areas/Doctor/appointmentDetails.js"></script>
+}

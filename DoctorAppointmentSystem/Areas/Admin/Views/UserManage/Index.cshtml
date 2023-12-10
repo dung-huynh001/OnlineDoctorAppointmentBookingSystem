@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Styles.Render("~/Content/admin/user")
+
+
+<h3 class="text-center mt-2 font-weight-bold">User Management</h3>
+
+<div class="content-wrapper">
+    @* index page user *@
+    <div id="table-list-user" class="col-12 col-sm-12 col-md-12 p-1" style="margin-bottom: 5em">
+        <div class="container-fluid content-wrapper mt-4 table-responsive card shadow pt-3 pb-3">
+            <table id="UserTable" class=" dt-responsive  display nowrap" cellspacing="0" width="100%" style=" margin : auto">
+            </table>
+        </div>
+    </div>
+    @*Reset password*@
+    <div id="reset-password-page" style=" " class="container-fluid justify-content-center  bg-white m-0 p-0">
+        <div id="error-message"> </div>
+        <div class="row  justify-content-center m-0">
+            <div class="col-12 card p-0 shadow border ">
+
+                <div class="card-header form-header p-0">
+                    <h4 class="text-center font-weight-bold m-3 ">Reset Password</h4>
+                </div>
+                <div class="card-body">
+                    <form id="form-reset-password-user" class="form-group" autocomplete="off">
+                        <p class="divider-text">
+                            <span class="bg-light">Reset password for user <strong id="username-account-reset"> </strong></span>
+                        </p>
+                        <input id="userid" name="userid" type="text" hidden>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control paswd-on-off" id="password" name="password" placeholder="Password (*)" maxlength="50" onkeypress="return isSpaceKey(event)">
+                        </div> <!-- Password -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text "><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control paswd-on-off" id="passwordconfirm" name="passwordconfirm" placeholder="Password confirm (*)" maxlength="50" onkeypress="return isSpaceKey(event)">
+                        </div> <!-- Password Confirm -->
+                        <div class="form-check form-group  input-group">
+                            <input type="checkbox" class="form-check-input" id="check-show-password" onclick="showPass()">
+                            <span class="form-check-label mt-0 pt-0 h6 text-secondary" for="check-show-password">Show password</span>
+                        </div><!-- Check Box Show Password  -->
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary" value="Update">
+                            <btn id="btn-close-form-reset-password" class="btn btn-secondary"> Cancel </btn>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/admin/user")
+
+}

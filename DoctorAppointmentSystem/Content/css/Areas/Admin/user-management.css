@@ -1,0 +1,18 @@
+﻿form .error {
+    color: #f94a4a;
+    font-size: 1em;
+    width: 100%;
+    display: block;
+}
+
+.warn {
+    color: darkorange;
+}
+
+.content-wrapper {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+
+

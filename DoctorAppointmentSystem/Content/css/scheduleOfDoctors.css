@@ -1,0 +1,143 @@
+﻿body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    width: 80%;
+    background-color: #f7f7f7;
+    margin: 50px auto;
+}
+
+.info-wrapper {
+    position: relative;
+}
+
+.info-label {
+    background-color: #fff;
+    position: absolute;
+    left: 10px;
+    pointer-events: none;
+    color: #333;
+    transform: translateX(15px) translateY(-18px);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+.input-box {
+    position: relative;
+    margin: 2em 0;
+}
+
+    .input-box input {
+        padding: 10px 10px 0;
+        width: 100%;
+        border: none;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        height: calc(1em + 2.3rem);
+        outline: none;
+        font-size: 1em;
+        background: inherit;
+        color: #333;
+    }
+
+    .input-box p {
+        padding: 10px 10px 0;
+        width: 100%;
+        border: none;
+        border-bottom: 1px dashed #9c9c9c;
+        outline: none;
+        font-size: 1em;
+        background: inherit;
+        color: #333;
+    }
+
+    .input-box select {
+        height: calc(1em + 1.8rem);
+        padding-top: 13px;
+        padding-bottom: 10px;
+        font-size: 1em;
+        color: #333;
+    }
+
+    .input-box span {
+        background-color: #fff;
+        position: absolute;
+        left: 0 !important;
+        pointer-events: none;
+        color: #888;
+        transform: translateY(-15px);
+        font-size: 0.72em;
+        padding: 0 !important;
+    }
+
+.option {
+    max-height: 90px;
+}
+
+.option-label {
+    font-size: 1em !important;
+    transform: translateX(calc(0.9em)) translateY(-1em) !important;
+}
+
+    .option-label i {
+        font-size: 1.3em;
+        margin-right: 3px;
+        transform: translateY(3px);
+    }
+
+.input-box .form-control {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+    border: 1px solid #9c9c9c;
+}
+
+    .input-box .form-control::placeholder {
+        font-size: 0.75em;
+        padding: 10px 0;
+    }
+
+.content-wrapper {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.form-control {
+    height: 2.4rem;
+    padding: 0.3rem 0.75rem;
+}
+
+.modal-title {
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-size: 1.15em;
+    font-weight: 700;
+}
+
+.modal-header {
+    background-image: linear-gradient(180deg, #c9c9c9, #dedede);
+}
+
+.modal-body {
+    padding: 30px 0.4rem;
+}
+
+.info-wrapper {
+    border-top: 2px solid #ccc;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.row {
+    margin: 0;
+}

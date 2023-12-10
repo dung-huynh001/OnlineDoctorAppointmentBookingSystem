@@ -1,0 +1,154 @@
+﻿
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<link href="~/Content/css/appointment.css" rel="stylesheet" />
+<style>
+    form .error {
+        margin-left: 0;
+    }
+</style>
+
+<h3 class="text-center mt-3 mb-3 font-weight-bold">Make Appointment</h3>
+
+<div class="d-flex justify-content-between flex-wrap mb-4">
+    <div class="col-12 col-sm-6 col-md-6 pl-0 pl-sm-0 pl-md-0 pr-0 pr-sm-1 pr-md-2 option">
+        <div class="input-box">
+            <span class="option-label">Date of Consultation</span>
+            <input id="dateOfConsultation" type="date" name="dateOfConsultation" style="padding-bottom: 7px" />
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 pr-0 pr-sm-0 pr-md-0 pl-0 pl-sm-1 pl-md-2 option">
+        <div class="input-box">
+            <span class="option-label">Time</span>
+            <input id="consultationTime" type="time" name="time" style="padding-bottom: 7px" />
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 pl-0 pr-0 option">
+        <div class="input-box">
+            <span class="option-label">Doctors</span>
+            <select class="custom-select" id="doctorSelector" style="height: calc(1em + 2.3rem); padding-bottom: 11px;">
+                <option selected hidden>Choose a doctor to make an appointment</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="modalWrapper" style="font-size: 16px;">
+    <!-- Modal -->
+    <div id="makeAppointmentModal" class="">
+        <div class="" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="makeAppointmentModalLabel">Appointment Form</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12 col-sm-12 col-md-12 pr-0 pl-0 pr-md-2 pl-md-2" id="appointmentForm">
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+
+                            <!--Doctor's Info-->
+                            <div class="col-12 col-sm-12 col-md-6 info-wrapper">
+                                <span class="info-label">Doctor's Info</span>
+
+                                <div class="input-box">
+                                    <span>Full Name</span>
+                                    <p id="doctorName"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Gender</span>
+                                    <p id="doctorGender"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Speciality</span>
+                                    <p id="speciality"></p>
+                                </div>
+
+                            </div>
+                            <!--Patient's Info-->
+                            <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                                <span class="info-label">Patient's Info</span>
+                                <div class="input-box">
+                                    <span>Full Name</span>
+                                    <p id="patientName"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Date of Birth</span>
+                                    <p id="dateOfBirth"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Gender</span>
+                                    <p id="patientGender"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Appointment's Info-->
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row">
+                            <span class="info-label">Appointment Details</span>
+                            <div class="col-12 col-sm-12 col-md-6 pl-0 pl-sm-0 pl-md-0 pr-0 pr-sm-0 pr-md-2">
+                                <div class="input-box">
+                                    <span class="ml-3 pr-2 pl-2">Mode of Consultant</span>
+                                    <select name="modeOfConsultant" class="custom-select" id="modeOfConsultant" required="required">
+                                        <option selected disabled hidden>Select mode of consultant</option>
+                                        @{ var modeOfConsultant = ViewBag.modeOfConsultant;
+                                            foreach (var mode in modeOfConsultant)
+                                            {
+                                                <option value=@mode.ID>@mode.PARAVAL</option>
+                                            } }
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <span class="ml-3 pr-2 pl-2">Consultant Type</span>
+                                    <select name="consultantType" class="custom-select" id="consultantType" required="required">
+                                        <option selected disabled hidden>Select type of consultant</option>
+                                        @{ var consultantType = ViewBag.consultantType;
+                                            foreach (var type in consultantType)
+                                            {
+                                                <option value=@type.ID>@type.PARAVAL</option>
+                                            } }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 pr-0 pl-0 pl-md-3" style="padding-right: 0;">
+                                <div class="input-box">
+                                    <span>Date Of Consultation</span>
+                                    <p id="consultationDate"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Time</span>
+                                    <p id="time"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 info-wrapper">
+                            <span class="info-label">Medical Notes</span>
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Symtoms</span>
+                                <textarea class="form-control" id="symtoms" placeholder="Note down here any current symptoms (if any).."></textarea>
+                            </div>
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Existing Illness</span>
+                                <textarea class="form-control" id="existingIllness" placeholder="Note down here any existing illness (if any)."></textarea>
+                            </div>
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Drug Alergies</span>
+                                <textarea class="form-control" id="drugAlergies" placeholder="Note down here any drug allergies or allergies to any components of medications (if any)."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCancel">Cancel</button>
+                    <button type="submit" form="appointmentForm" class="btn btn-primary" id="btnConfirm">Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/js/appointment.js"></script>
+}

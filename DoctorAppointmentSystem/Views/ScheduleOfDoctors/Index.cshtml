@@ -1,0 +1,98 @@
+﻿
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<link href="~/Content/css/scheduleOfDoctors.css" rel="stylesheet" />
+
+<h3 class="text-center mt-3 mb-3 font-weight-bold">Schedule of Doctors</h3>
+<div class="container-fluid content-wrapper pr-0 pl-0 pr-md-2 pl-md-2 table-responsive">
+    <table id="scheduleTbl" class="dt-responsive display nowrap">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+<div class="modalWrapper" style="font-size: 16px;">
+    <!-- Modal -->
+    <div class="modal fade" id="makeAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="makeAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="makeAppointmentModalLabel">View Doctor</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12 col-sm-12 col-md-12">
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+
+                            <!--Doctor's Info-->
+                            <div class="col-12 col-sm-12 col-md-6 info-wrapper">
+                                <span class="info-label">Personal Info</span>
+                                <div class="input-box">
+                                    <span>Full Name</span>
+                                    <p id="fullName"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Date of Birth</span>
+                                    <p id="dateOfBirth"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Gender</span>
+                                    <p id="gender"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Speciality</span>
+                                    <p id="speciality"></p>
+                                </div>
+
+                            </div>
+
+                            <!--Patient's Info-->
+                            <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                                <span class="info-label">Contact</span>
+                                <div class="input-box">
+                                    <span>Phone Number</span>
+                                    <p id="phoneNumber"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Email</span>
+                                    <p id="email"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Appointment Details-->
+                        <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row">
+                            <span class="info-label">Schedule of Doctor</span>
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <div class="input-box">
+                                    <span>Working Day</span>
+                                    <p id="workingDay"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Consultant Time</span>
+                                    <p id="consultantTime"></p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <div class="input-box">
+                                    <span>Start Time</span>
+                                    <p id="shiftTime"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>End Time</span>
+                                    <p id="breakTime"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancel">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/js/scheduleOfDoctors.js"></script>
+}

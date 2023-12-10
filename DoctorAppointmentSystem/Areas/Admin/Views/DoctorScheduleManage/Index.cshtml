@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/select2/css")
+@Styles.Render("~/Content/admin/doctorschedule")
+
+<h3 class="text-center mt-2 font-weight-bold">Doctor Schedule Management</h3>
+
+<div class="content-wrapper">
+    @* form create schedule  *@
+    <div id="create-doctor-schedule-page"  style="font-size:1px; display: none; " class="container-fluid justify-content-center  bg-white p-0 m-0">
+        <div class="row  justify-content-center m-0">
+            <div class="col-12 card p-0 shadow border">
+                <div class="card-header form-header p-0 ">
+                    <h4 class="text-center font-weight-bold m-3 ">Add Doctor Schedule Data</h4>
+                </div>
+                <div class="card-body">
+                    <form id="form-doctor-schedule" class="form-group" autocomplete="off">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-building-user"></i></span>
+                            </div>
+                            <div class="form-control doctor-box">
+                                @Html.DropDownList("Doctor", ViewBag.doctor as SelectList, "Doctor (*)", new { @class = "form-control custom-select doctor-select", @id = "doctor" })
+                            </div>
+                            <div id="doctor-error-message"></div>
+                        </div><!-- select doctor-->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-calendar-days"></i></span>
+                            </div>
+                            <input placeholder="Working day (*)" class="form-control" type="text" onfocus="(this.type='date')" onblur="this.type='text'" id="scheduledate" name="scheduledate">
+                        </div><!-- scheudule -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <input placeholder="Start time (*)" class="form-control" type="text" onfocus="(this.type='time')" onblur="this.type='text'" id="starttime" name="starttime">
+                        </div> <!-- start time -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <input placeholder="End time (*)" class="form-control" type="text" onfocus="(this.type='time')" onblur="this.type='text'" id="endtime" name="endtime">
+                        </div><!-- end time -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-hourglass-half"></i></span>
+                            </div>
+                            @Html.DropDownList("Consultanttime", ViewBag.consultanttime as SelectList, "Consultant time (*)", new { @class = "form-control custom-select Consultant-select", @id = "consultanttime" })
+
+                        </div><!-- select consultant-->
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary mr-2" value="Create">
+                            <btn id="btn-close-form" class="btn btn-secondary"> Cancel </btn>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @* index  *@
+    <div id="list-doctor-schedule-page" class="col-12 col-sm-12 col-md-12 p-1" style="margin-bottom: 5em">
+        <btn id="btn-open-form-create" class=" btn btn-custom-adm mb-3 ">Create New</btn>
+        <div class="container-fluid content-wrapper mt-4 table-responsive card shadow pt-3 pb-3">
+            <table id="doctor-schedule-table" class=" dt-responsive  display nowrap" cellspacing="0" width="100%" style=" margin : auto">
+            </table>
+        </div>
+    </div>
+
+  
+    @* form update schedule *@
+    <div id="update-doctor-schedule-page" style="display: none;" class="container-fluid justify-content-center  bg-white m-0 p-0 ">
+
+        <div class="row  justify-content-center m-0">
+            <div class="col-12 card p-0 shadow border">
+                <div class="card-header  p-0 form-header">
+                    <h4 class="text-center font-weight-bold m-3">Update Schedule</h4>
+                </div>
+                <div class="card-body">
+                    <form id="from-update-doctor-schedule" class="form-group" autocomplete="off">
+                        <input id="uscheduleid" type="text" hidden />
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-building-user"></i></span>
+                            </div>
+                            <div class="form-control doctor-box">
+                                @Html.DropDownList("uDoctor", ViewBag.doctor as SelectList, "Doctor (*)", new { @class = "form-control custom-select doctor-select", @id = "udoctor" })
+                            </div>
+                            <div id="doctor-error-message"></div>
+                        </div><!-- select doctor-->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-calendar-days"></i></span>
+                            </div>
+                            <input placeholder="Working day (*)" class="form-control" type="text" onfocus="(this.type='date')" onblur="this.type='text'" id="uscheduledate" name="uscheduledate">
+                        </div><!-- scheudule -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <input placeholder="Start time (*)" class="form-control" type="text" onfocus="(this.type='time')" onblur="this.type='text'" id="ustarttime" name="ustarttime">
+                        </div> <!-- start time -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <input placeholder="End time (*)" class="form-control" type="text" onfocus="(this.type='time')" onblur="this.type='text'" id="uendtime" name="uendtime">
+                        </div><!-- end time -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-hourglass-half"></i></span>
+                            </div>
+                            @Html.DropDownList("uConsultanttime", ViewBag.consultanttime as SelectList, "Consultant time (*)", new { @class = "form-control custom-select Consultant-select", @id = "uconsultanttime" })
+
+                        </div><!-- select consultant-->
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary" value="Update">
+                            <btn id="btn-close-form-update" class="btn btn-secondary"> Cancel </btn>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/select2/js")
+    @Scripts.Render("~/bundles/admin/doctorschedule")
+
+
+}

@@ -1,0 +1,330 @@
+﻿<link href="~/Content/css/appointmentHistory.css" rel="stylesheet" />
+
+<style>
+    .dataTables_wrapper .dataTables_filter input {
+        max-height: 30px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 3px 1em;
+    }
+</style>
+
+<div class="row">
+    <!-- Status -->
+    <article class="col-12 col-md-5 custom-post">
+        <hr class="custom-hr-primary" />
+        <h4>Status</h4>
+        <div class="custom-status-wrapper d-flex flex-wrap justify-content-center">
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <p class="h5" id="allDoctors">@ViewBag.allDoctors</p>
+                        <span class="custom-card-title">All Doctors</span>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-users"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <p class="h5" id="allBooking">@ViewBag.allBooking</p>
+                        <span class="custom-card-title">All Booking</span>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-wheelchair"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <p class="h5" id="newBooking">@ViewBag.newBooking</p>
+                        <span class="custom-card-title">New Booking</span>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="far fa-bookmark"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <p class="h5" id="todaySessions">@ViewBag.todaySessions</p>
+                        <span class="custom-card-title">Today Sessions</span>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-calendar-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="col-12 col-md-7 custom-post">
+        <hr class="custom-hr-primary" />
+        <h4>Your Upcoming Booking</h4>
+        <div class="container-fluid pt-3 content-wrapper pr-0 pl-0 pr-md-2 pl-md-2" style="font-size: 1em">
+            <table id="upcomingTbl" class="dt-responsive display nowrap w-100">
+            </table>
+        </div>
+    </article>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="makeAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="makeAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="makeAppointmentModalLabel">View Appointment</h5>
+            </div>
+            <div class="modal-body">
+                <form class="col-12 col-sm-12 col-md-12" id="appointmentForm">
+                    <div class="col-12 col-sm-12 col-md-12 mb-4 p-0 d-flex justify-content-between flex-wrap">
+
+                        <!--Doctor's Info-->
+                        <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                            <span class="info-label">Doctor's Info</span>
+
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <p id="doctorName"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Gender</span>
+                                <p id="doctorGender"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Speciality</span>
+                                <p id="speciality"></p>
+                            </div>
+
+                        </div>
+                        <!--Patient's Info-->
+                        <div class="col-12 col-sm-12 col-md-5 info-wrapper">
+                            <span class="info-label">Patient's Info</span>
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <p id="patientName"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Date of Birth</span>
+                                <p id="dateOfBirth"></p>
+                            </div>
+                            <div class="input-box">
+                                <span>Gender</span>
+                                <p id="patientGender"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Appointment's Info-->
+                    <div class="col-12 col-sm-12 col-md-12 mb-4 info-wrapper row">
+                        <span class="info-label">Appointment Details</span>
+                        <div class="col-12 col-sm-12 col-md-4 pl-0 pl-sm-0 pl-md-0 pr-0 pr-sm-0 pr-md-2">
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Mode of Consultant</span>
+                                <select name="modeOfConsultant" class="custom-select" id="modeOfConsultant" required="required">
+                                    <option selected disabled hidden>Select mode of consultant</option>
+                                    @{ var modeOfConsultant = ViewBag.modeOfConsultant;
+                                                    foreach (var mode in modeOfConsultant)
+                                                    {
+                                        <option value=@mode.ID>@mode.PARAVAL</option> } }
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span class="ml-3 pr-2 pl-2">Consultant Type</span>
+                                <select name="consultantType" class="custom-select" id="consultantType" required="required">
+                                    <option selected disabled hidden>Select type of consultant</option>
+                                    @{ var consultantType = ViewBag.consultantType;
+                                                    foreach (var type in consultantType)
+                                                    {
+                                        <option value=@type.ID>@type.PARAVAL</option> } }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-8 pr-0 pl-0 row" style="padding-right: 0;">
+                            <div class="col-6 col-sm-6 col-md-6 pl-0 pl-md-3">
+                                <div class="input-box">
+                                    <span>Date of Consultation</span>
+                                    <p id="dateOfConsultation"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Time</span>
+                                    <p id="consultationTime"></p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 pr-0">
+                                <div class="input-box">
+                                    <span>Appointment Date</span>
+                                    <p id="appointmentDate"></p>
+                                </div>
+                                <div class="input-box">
+                                    <span>Time</span>
+                                    <p id="appointmentTime"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 info-wrapper">
+                        <span class="info-label">Medical Notes</span>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Symtoms</span>
+                            <textarea class="form-control" id="symtoms" placeholder="Note down here any current symptoms (if any).."></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Existing Illness</span>
+                            <textarea class="form-control" id="existingIllness" placeholder="Note down here any existing illness (if any)."></textarea>
+                        </div>
+                        <div class="input-box">
+                            <span class="ml-3 pr-2 pl-2">Drug Alergies</span>
+                            <textarea class="form-control" id="drugAlergies" placeholder="Note down here any drug allergies or allergies to any components of medications (if any)."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancel">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var table = $('#upcomingTbl').DataTable({
+            language: {
+                emptyTable: "You don't have any upcoming appointments."
+            },
+            order: [[1, 'asc']],
+            responsive: true,
+            columns: [
+                {
+                    className: 'dt-control',
+                    orderable: false,
+                    data: null,
+                    defaultContent: '',
+                },
+                {
+                    data: 'appointmentID',
+                    title: 'Appt No.',
+                },
+                {
+                    data: 'doctorName',
+                    title: 'Doctor Name',
+                    className: 'text-nowrap',
+                },
+                {
+                    data: 'dateOfConsultation',
+                    title: 'Date of Consultation',
+                    className: 'text-center',
+                },
+                {
+                    data: 'consultationTime',
+                    title: 'Time',
+                },
+                {
+                    data: 'consultationDay',
+                    title: 'Day',
+                },
+                {
+                    data: 'appointmentStatus',
+                    title: 'Status',
+                    className: 'text-center',
+                    render: function (data, type, row) {
+                        return '<span class="column-status">' + data + '</span>';
+                    }
+                },
+                {
+                    responsivePriority: 1,
+                    data: 'appointmentID',
+                    title: "Action",
+                    orderable: false,
+                    render: function (data, type, row) {
+                        return type === 'display' ?
+                            '<div class="d-flex justify-content-round">'
+                            + '<a data-appointmentid="' + data + '" class="btn btn-outline-info btn-sm btn-action btn-viewAppt" role="button" data-toggle="modal" data-target="#makeAppointmentModal">'
+                            + '<i class="fa-solid fa-eye" data-toggle="popover" data-trigger="hover" data-placement="top"  data-content="View Appointment" ></i></a>'
+                            + '</div>'
+                            : data;
+                    }
+                }
+            ]
+        });
+
+
+        function loadData() {
+            $.ajax({
+                url: '/Appointment/UpcomingAppointment',
+                method: 'GET',
+                dataType: 'JSON',
+                success: function (res) {
+                    table.clear(res.data).draw();
+                    table.rows.add(res.data).draw();
+                    styleForStatus();
+                },
+                error: function (err) {
+                    console.log(err.responseText)
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            loadData();
+            table.on('draw', function () {
+                styleForStatus();
+            });``
+        })
+
+        
+        function styleForStatus() {
+            var elements = document.getElementsByClassName("column-status");
+            for (var element of elements) {
+                if (element.textContent.toLowerCase() == 'pending') {
+                    element.classList.add("column-status--pending");
+                } else if (element.textContent.toLowerCase() == 'confirm') {
+                    element.classList.add("column-status--process");
+                } else if (element.textContent.toLowerCase() == 'completed') {
+                    element.classList.add("column-status--completed");
+                } else {
+                    element.classList.add("column-status--cancel");
+                }
+            }
+        }
+        $(document).on('click', '.btn-viewAppt', function () {
+            var btnViewAppt = $(this);
+            var appointmentID = btnViewAppt.data('appointmentid');
+            $.ajax({
+                url: '/Appointment/ViewAppointment',
+                method: 'GET',
+                data: { appointmentID: appointmentID },
+                dataType: 'JSON',
+                success: function (res) {
+                    var data = res.data;
+                    $('#doctorName').text(data.doctorName);
+                    $('#doctorGender').text(data.doctorGender);
+                    $('#speciality').text(data.doctorSpeciality);
+                    $('#patientName').text(data.patientName);
+                    $('#dateOfBirth').text(data.patientDateOfBirth);
+                    $('#patientGender').text(data.patientGender);
+                    $('#modeOfConsultant').val(data.modeOfConsultant);
+                    $('#consultantType').val(data.consultantType);
+                    $('#dateOfConsultation').text(data.dateOfConsultation);
+                    $('#consultationTime').text(data.consultationTime);
+                    $('#appointmentDate').text(data.appointmentDate);
+                    $('#appointmentTime').text(data.appointmentTime);
+                    $('#symtoms').val(data.symtoms);
+                    $('#existingIllness').val(data.existingIllness);
+                    $('#drugAlergies').val(data.drugAlergies);
+                },
+                error: function (err) {
+                    console.log(err.responseText);
+                }
+            })
+        })
+    </script>
+}

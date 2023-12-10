@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Online Doctor Appoinment</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/css/register.css" rel="stylesheet" />
+    @Styles.Render("~/Content/fontawesome/css")
+    @Styles.Render("~/Content/sweetalert/css")
+</head>
+<body>
+    <div id="register-wrapper">
+        <div class="container">
+            <div class="card">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Security Questions</h4>
+                    <p style="color: #f94a4a; font-weight:400; " class="text-center ">Answer the question to continue logging in. These questions will be used when resetting the password.</p>
+
+                    <form id="authen-questions" class="register-form d-flex flex-column justify-content-center" enctype="multipart/form-data">
+
+                        <input id="username" name="Username" type="text" hidden value="@ViewBag.username">
+                        <!-- Username -->
+
+                        <div class="authQuestions form-group mt-3">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion1", ViewBag.questions as SelectList, "Select the first authentication question (*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion1" })
+                            </div> <!-- Password Recovery Question 1-->
+
+                            <div class="form-group input-group">
+                                <input id="answer1" name="answer1" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 1 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 1 -->
+                        </div>
+
+                        <div class="authQuestions form-group">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion2", ViewBag.questions as SelectList, "Select the second authentication question(*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion2" })
+                            </div> <!-- Password Recovery Question 2-->
+
+                            <div class="form-group input-group">
+                                <input id="answer2" name="answer2" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 2 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 2 -->
+                        </div>
+
+                        <div class="authQuestions form-group">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion3", ViewBag.questions as SelectList, "Select the third authentication question (*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion3" })
+                            </div> <!-- Password Recovery Question 3-->
+
+                            <div class="form-group input-group">
+                                <input id="answer3" name="answer3" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 3 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 3 -->
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block ">Save to continue</button>
+                        </div> <!-- Submit button -->
+
+                    </form>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set value for input Profile picture -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/authen/questions")
+    <script src="~/Scripts/js/validateInput.js"></script>
+</body>
+</html>

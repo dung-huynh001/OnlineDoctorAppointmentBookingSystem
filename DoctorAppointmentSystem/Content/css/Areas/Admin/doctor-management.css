@@ -1,0 +1,107 @@
+﻿form .error {
+    color: #f94a4a;
+    font-size: 1em;
+    width: 100%;
+    display: block;
+}
+
+.warn {
+    color: darkorange;
+}
+.content-wrapper {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+/*custom select department*/
+.icon-for-select2{
+    height:45px;
+}
+
+
+.select2.select2-container .select2-selection {
+    border: 1px solid #ced4da;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 0px 3px 3px 0px;
+    height: 45px;
+    margin-bottom: 15px;
+    outline: none !important;
+    transition: all .15s ease-in-out;
+}
+
+.select2.select2-container .select2-selection .select2-selection__rendered {
+    color: #333;
+    line-height: 37px;
+    height: 45px;
+    padding-right: 33px;
+}
+
+.select2.select2-container .select2-selection .select2-selection__arrow {
+    background: #f8f8f8;
+    border-left: 1px solid #ccc;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    height: 43px;
+    width: 33px;
+}
+
+.select2.select2-container.select2-container--open .select2-selection.select2-selection--single {
+    background: #f8f8f8;
+}
+
+.select2.select2-container.select2-container--open .select2-selection.select2-selection--single .select2-selection__arrow {
+    -webkit-border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    border-radius: 0 3px 0 0;
+}
+
+.select2-container .select2-dropdown {
+    background: transparent;
+    border: none;
+    margin-top: -5px;
+}
+
+.select2-container .select2-dropdown .select2-search {
+    padding: 0;
+}
+
+.select2-container .select2-dropdown .select2-search input {
+    outline: none !important;
+    border: 1px solid #34495e !important;
+    border-bottom: none !important;
+    padding: 4px 6px !important;
+}
+
+.select2-container .select2-dropdown .select2-results {
+    padding: 0;
+}
+
+.select2-container .select2-dropdown .select2-results ul {
+    background: #fff;
+    border: 1px solid #34495e;
+}
+    .select2-container .select2-dropdown .select2-results ul li {
+        color: #495057;
+        padding-bottom: 1px !important;
+        padding-top: 1px !important;
+        line-height: 1.2em !important;
+    }
+    .select2-container .select2-dropdown .select2-results ul .select2-results__option--highlighted[aria-selected] {
+        background-color: #007bff;
+        color: #f8f8f8;
+    }
+
+.select2.select2-container {
+    width: 100% !important;
+    height: 37.6px !important;
+   
+}
+
+.department-box {
+    padding: 0;
+    height: 37.6px;
+    border: none;
+}
+
+

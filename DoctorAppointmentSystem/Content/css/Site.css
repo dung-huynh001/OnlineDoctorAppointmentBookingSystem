@@ -1,0 +1,65 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+.custom-symbol {
+    min-width: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form .error {
+    font-family: Arial, sans-serif;
+    color: #f94a4a;
+    font-size: 0.8em;
+    width: 100%;
+    display: block;
+    margin-left: 46px;
+}
+
+.btn-action{
+    margin: 0 10px;
+}
+
+.btn-action:first-child {
+    margin-left: 0;
+}
+
+.btn-action:last-child {
+    margin-right: 0;
+}
+.form-header {
+    background-image: linear-gradient(180deg, #c9c9c9, #dedede);
+   
+}
+
+.bs-popover-auto[x-placement^=top] > .arrow::after, .bs-popover-top > .arrow::after {
+    border-top-color: #6c757d;
+}
+
+.btn-custom-adm {
+    background-color: #747399;
+    color: white !important;
+}

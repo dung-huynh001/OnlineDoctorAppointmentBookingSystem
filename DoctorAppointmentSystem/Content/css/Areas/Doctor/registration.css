@@ -1,0 +1,188 @@
+﻿body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+}
+
+.info-wrapper {
+    position: relative;
+    border-top: 2px solid #ccc;
+    padding: 15px 5px;
+}
+
+    .info-wrapper .input-box {
+        width: 100%;
+        margin: 15px 0 25px;
+    }
+
+        .info-wrapper .input-box input {
+            margin: 6px 0 0;
+            border: none;
+            border-radius: 0;
+            padding: 10px 10px 0;
+            border-bottom: 1px solid #ced4da;
+        }
+
+        .input-label {
+            color: #888;
+            transform: translateX(6px) translateY(-7px) !important;
+            font-size: 0.73em;
+            padding: 0 5px !important;
+            background: white;
+        }
+
+
+
+.info-label {
+    background-color: #fff;
+    position: absolute;
+    left: 10px;
+    pointer-events: none;
+    color: #333;
+    transform: translateX(15px) translateY(-30px);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+.input-box {
+    position: relative;
+}
+
+
+    .input-box select {
+        height: calc(1em + 2rem);
+        padding-top: 13px;
+        padding-bottom: 10px;
+        font-size: 1em;
+        color: #333;
+    }
+
+
+
+.option {
+    max-height: 90px;
+}
+
+.option-label {
+    font-size: 1em !important;
+    transform: translateX(calc(0.9em)) translateY(-1em) !important;
+}
+
+    .option-label i {
+        font-size: 1.3em;
+        margin-right: 3px;
+        transform: translateY(3px);
+    }
+
+
+.content-wrapper {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.modal-title {
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-size: 1.15em;
+    font-weight: 700;
+}
+
+.modal-header {
+    background-image: linear-gradient(180deg, #c9c9c9, #dedede);
+}
+
+.modal-body {
+    padding: 30px 0.4rem;
+}
+
+.row {
+    margin: 0;
+}
+
+.input-box {
+    position: relative;
+    width: 255px;
+}
+
+    .input-box input {
+        width: 100%;
+        padding: 3px 10px;
+        border: 1px solid #ced4da;
+        outline: none;
+        border-radius: 5px;
+        font-size: 1em;
+        background: inherit;
+        color: #333;
+    }
+
+    .input-box span {
+        position: absolute;
+        left: 0;
+        padding: 10px;
+        pointer-events: none;
+        font-size: 0.85em;
+        line-height: 1.5;
+        color: #888;
+        transition: all 0.5s ease;
+    }
+
+    .input-box input:valid ~ span,
+    .input-box input:focus ~ span {
+        color: #888;
+        transform: translateX(7px) translateY(-7px) !important;
+        font-size: 0.65em;
+        padding: 0 5px;
+        background: white;
+    }
+
+
+.table-wrapper {
+    min-height: 70vh;
+}
+
+#registrationTbl {
+    background-color: #fff;
+}
+
+#addMemberModal{
+    padding-right: 0 !important;
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 550px) {
+    html {
+        font-size: 13px;
+    }
+
+    .btn {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .search-box {
+        gap: 5px;
+    }
+}
+
+
+
+@media (max-width: 1920px) {
+    #nationID-label::after {
+        content: "National ID/Passport Number";
+    }
+}
+
+@media (max-width: 673px) {
+    #nationID-label::after {
+        content: "NationalID";
+    }
+}
+
+form .error{
+    margin: 0;
+}

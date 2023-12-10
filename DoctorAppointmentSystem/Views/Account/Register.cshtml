@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Online Doctor Appointment</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/css/register.css" rel="stylesheet" />
+    @Styles.Render("~/Content/fontawesome/css")
+    @Styles.Render("~/Content/sweetalert/css")
+</head>
+<body>
+    <div id="register-wrapper">
+        <div class="container">
+            <div class="card">
+                <article class="card-body mx-auto">
+                    <h4 class="mt-3 text-center">Create Account</h4>
+                    <form class="register-form d-flex flex-column justify-content-center" enctype="multipart/form-data">
+                        <p class="divider-text">
+                            <span class="bg-light">Account information</span>
+                        </p>
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input id="username" name="Username" class="form-control" placeholder="Username (*)" type="text" pattern="^[a-zA-Z0-9]+$" maxlength="50" onkeypress="return validateUsername(event)" autocomplete="off">
+                        </div> <!-- Username -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input id="password" name="Password" class="form-control" onkeypress="return validatePassword(event)" placeholder="Password (*)" type="password" pattern="^\S+$" maxlength="256" autocomplete="off">
+                        </div> <!-- Password -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input id="confirmPassword" name="Confirm" class="form-control" onkeypress="return validatePassword(event)" placeholder="Confirm password (*)" type="password" pattern="^\S+$" maxlength="256" autocomplete="off">
+                        </div> <!-- Confirm password -->
+
+                        <div class="authQuestions form-group mt-3">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion1", ViewBag.questions as SelectList, "Select the first authentication question (*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion1" })
+                            </div> <!-- Password Recovery Question 1-->
+
+                            <div class="form-group input-group">
+                                <input id="answer1" name="answer1" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 1 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 1 -->
+                        </div>
+
+                        <div class="authQuestions form-group">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion2", ViewBag.questions as SelectList, "Select the second authentication question(*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion2" })
+                            </div> <!-- Password Recovery Question 2-->
+
+                            <div class="form-group input-group">
+                                <input id="answer2" name="answer2" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 2 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 2 -->
+                        </div>
+
+                        <div class="authQuestions form-group">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa-sharp fa-solid fa-circle-question"></i></span>
+                                </div>
+                                @Html.DropDownList("AuthQuestion3", ViewBag.questions as SelectList, "Select the third authentication question (*)", new { @class = "form-control custom-select authQuestion", @id = "authQuestion3" })
+                            </div> <!-- Password Recovery Question 3-->
+
+                            <div class="form-group input-group">
+                                <input id="answer3" name="answer3" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Answer 3 (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                            </div> <!-- Answer 3 -->
+                        </div>
+                        <p class="divider-text">
+                            <span class="bg-light">Personal information</span>
+                        </p>
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+                            </div>
+                            <input id="fullName" name="FullName" class="form-control" onkeypress="return validateUnicode(event)" placeholder="Full name (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="50" autocomplete="off">
+                        </div> <!-- Full name -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input id="email" name="Email" class="form-control" placeholder="Email address (*)" type="email" maxlength="256" autocomplete="off">
+                        </div> <!-- Email -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                            </div>
+                            <input id="nationalID" name="NationalID" class="form-control" placeholder="National ID (*)" type="text" pattern="^[a-zA-Z0-9]+$" maxlength="10" autocomplete="off">
+                        </div> <!-- National ID -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
+                            </div>
+                            <input placeholder="Date of birth (*)" name="DateOfBirth" class="form-control" type="text" onfocus="(this.type='date')" onblur="this.type='text'" id="dateOfBirth">
+                        </div>  <!-- Date of birth -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-venus-mars"></i></span>
+                            </div>
+                            @Html.DropDownList("Gender", ViewBag.genders as SelectList, "Gender (*)", new { @class = "form-control custom-select gender", @id = "gender" })
+                        </div> <!-- Gender -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input id="phoneNumber" name="PhoneNumber" class="form-control" onkeypress="return validateNumber(event)" placeholder="Phone number (*)" type="text" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" maxlength="10" autocomplete="off">
+                        </div> <!-- Phone number -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-home"></i></span>
+                            </div>
+                            <input id="address" name="Address" class="form-control" placeholder="Address (*)" type="text" pattern="^[\p{L}\p{N}\s]*$" maxlength="256" autocomplete="off">
+                        </div> <!-- Address -->
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-camera"></i></span>
+                            </div>
+                            <input name="" id="pictureName" readonly class="form-control" placeholder="Choose your profile picture" type="text" onclick="document.getElementById('profilePicture').click()">
+                            <input name="" id="profilePicture" class="form-control" type="file" accept="image/*" style="display:none">
+                        </div> <!-- Profile picture -->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                        </div> <!-- Submit button -->
+
+                        <p class="text-center">Already have an account? <a href="@Url.Action("Login")">Log In</a> </p>
+
+                    </form>
+                </article>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/js/validateInput.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/js/register.js"></script>
+    <!-- Set value for input Profile picture -->
+    <script>
+        $(document).ready(function () {
+            $('#profilePicture').change(function () {
+                var file = $('#profilePicture')[0].files[0].name;
+                $('#pictureName').val(file);
+            });
+        });
+    </script>
+</body>
+</html>

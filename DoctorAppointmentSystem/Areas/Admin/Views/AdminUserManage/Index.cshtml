@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Styles.Render("~/Content/select2/css")
+
+<style>
+    .content-wrapper {
+        font-size: 16px;
+        line-height: 1.5em;
+    }
+</style>
+
+
+<h3 class="text-center mt-2 font-weight-bold">Admin  Management</h3>
+
+
+<div class="content-wrapper">
+    @* Create User Admin *@
+    <div id="create-admin-page" style="display: none;" class="container-fluid justify-content-center  bg-white m-0 p-0">
+        <div id="error-message"> </div>
+        <div class="row  justify-content-center m-0">
+            <div class="col-11 card p-0 shadow border">
+
+                <div class="card-header  p-0 form-header"  >
+                    <h4 class="text-center m-2 font-weight-bold">Create Admin User</h4>
+                </div>
+                <div class="card-body">
+                    <form id="form-create-admin" class="form-group" autocomplete="off">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username (*)" maxlength="50"
+                                   data-toggle="popover" data-trigger="hover" data-placement="top"  data-content="Username (*)">
+                        </div><!-- Username -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control paswd-on-off" id="password" name="password" placeholder="Password (*)" maxlength="50"
+                                   data-toggle="popover" data-trigger="hover" data-placement="top"  data-content="Password (*)" onkeypress="return isSpaceKey(event)">
+                        </div><!-- Password -->
+                        <div class="form-check form-group  input-group">
+                            <input type="checkbox" class="form-check-input" id="check-show-password" onclick="showPass()">
+                            <span class="form-check-label mt-0 pt-0 h6 text-secondary" for="check-show-password">Show password</span>
+                        </div><!-- Check Box Show Password  -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email (*)" maxlength="50"
+                                   data-toggle="popover" data-trigger="hover" data-placement="top"  data-content="Email (*))">
+                        </div> <!-- email -->
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary" value="Create">
+                            <btn id="btn-close-form" class="btn btn-secondary"> Cancel </btn>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    @* index admin user *@
+    <div id="list-admin-page" class="col-12 col-sm-12 col-md-12 p-1" style="margin-bottom: 5em">
+        <btn id="btn-open-form" class=" btn mb-2 mr-3  btn-custom-adm" > Create New </btn>
+        <div class="container-fluid content-wrapper mt-4 table-responsive card shadow pt-3 pb-3">
+            <table id="AdminTable" class=" dt-responsive  display nowrap" cellspacing="0" width="100%" style=" margin : auto">
+            </table>
+        </div>
+    </div>
+    @* Update admin user *@
+    <div id="update-admin-page" style="display: none;"  class="container justify-content-center bg-white">
+        <div id="error-message-update">
+        </div>
+        <div class="row  justify-content-center">
+            <div class="col-8 card p-0 shadow border ">
+                <div class="card-header bg-primary p-0 form-header">
+                    <h4 class="text-center font-weight-bold m-2" >Update Admin Account Info</h4>
+                </div>
+                <div class="card-body">
+                    <form id="form-update-admin" class="form-group" autocomplete="off">
+                        <p class="divider-text">
+                            <span class="bg-light">Admin account information</span>
+                        </p>
+                        <div class="form-group">
+                            <input type="text" class="form-control " hidden id="uadminid">
+                        </div><!--admin user ID -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="uusername" disabled>
+                        </div><!--Update Username -->
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text custom-symbol"><i class="fa-solid fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" id="uemail" name="uemail" placeholder="Email (*)">
+                        </div> <!--Update email -->
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary" value="Update">
+                            <btn id="btn-close-form-update" class="btn btn-secondary">Cancel</btn>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/select2/js")
+    @Scripts.Render("~/bundles/admin/adminuser")
+
+}

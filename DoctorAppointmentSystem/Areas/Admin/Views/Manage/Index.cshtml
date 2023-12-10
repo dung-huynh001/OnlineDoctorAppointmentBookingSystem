@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="ml-2">Dashboard</h2>
+
+@Styles.Render("~/Content/Admin/Dashboard")
+
+<div class="row m-2">
+    <!-- Status -->
+    <article class="col-12 col-sm-12 col-md-5 custom-post">
+        <hr class="custom-hr-primary" />
+        <h4 class="mb-3">Status</h4>
+        <div class="custom-status-wrapper d-flex flex-wrap justify-content-center">
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <a href="@Url.Action("Index", "DoctorManage", new {area = "Admin"})">
+                            <p class="h5" id="allDoctors">@ViewBag.DoctorCount</p>
+                            <span class="custom-card-title">All Doctors</span>
+                           </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-users"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <a href="@Url.Action("Index", "PatientManage", new {area = "Admin"})">
+                            <p class="h5" id="allBooking">@ViewBag.PatientCount</p>
+                            <span class="custom-card-title">All Patients</span>
+                            </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-wheelchair"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <a href="@Url.Action("Index", "AppointmentManage", new {area = "Admin"})">
+                            <p class="h5" id="newBooking">@ViewBag.TodayAppointment</p>
+                            <span class="custom-card-title">Today Appointments</span>
+                            </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fa-solid fa-file-medical"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="custom-card">
+                <div class="custom-card-body d-flex flex-nowrap justify-content-between align-items-center">
+                    <div class="col-8 col-md-8 d-flex flex-column justify-content-between h-100">
+                        <a href="@Url.Action("Index", "AppointmentManage", new {area = "Admin"})">
+                            <p class="h5" id="todaySessions">@ViewBag.AppointmentTillDate</p>
+                            <span class="custom-card-title">All Appointments</span>
+                            </a>
+                    </div>
+                    <span class="col-3 col-md-3 custom-card-icon text-center">
+                        <i class="fas fa-calendar-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="col-12 col-sm-12 col-md-7 custom-post custom-chart">
+        <hr class="custom-hr-primary" />
+        @{
+            var today = DateTime.Now;
+
+            var thisWeekStart = today.AddDays(-(int)today.DayOfWeek + 1);
+            var thisWeekEnd = thisWeekStart.AddDays(7).AddSeconds(-1);
+        }
+        <h3>Appointments for (@thisWeekStart.ToShortDateString() - @thisWeekEnd.AddDays(-1).ToShortDateString())</h3>
+        <div class="container-fluid pt-3 content-wrapper table-responsive custom-chart" style="font-size: 1em" >
+
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
+    </article>
+
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/admin/chart")
+    @Scripts.Render("~/bundles/admin/dashboard")
+
+}

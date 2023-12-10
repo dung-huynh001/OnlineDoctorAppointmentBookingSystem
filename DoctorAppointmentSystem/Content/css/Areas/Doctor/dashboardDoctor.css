@@ -1,0 +1,26 @@
+﻿.appt-gird-l {
+    min-width: 200px;
+    width: 20%;
+}
+#select-statu-appt{
+    min-width: 250px;
+    width:20%;
+}
+
+@media (max-width: 660px) {
+    .fc-toolbar-title{
+        font-size: 1.2em !important;
+        margin-bottom: 4px !important;
+    }
+    .fc-toolbar-chunk{
+        margin-bottom:5px !important;
+    }
+    .fc-today-button {
+        margin-bottom: 5px !important;
+    }
+    .fc-button-group {
+        margin-bottom: 5px !important;
+    }
+}
+
+

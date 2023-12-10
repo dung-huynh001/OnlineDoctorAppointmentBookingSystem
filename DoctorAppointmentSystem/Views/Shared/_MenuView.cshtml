@@ -1,0 +1,94 @@
+﻿@using DoctorAppointmentSystem.Models.DB;
+@{
+    USER currentUser = null;
+    if (User.Identity.IsAuthenticated == true)
+    {
+        var userName = User.Identity.Name;
+        if (userName != null)
+        {
+            using (DBContext dbContext = new DBContext())
+            {
+                currentUser = dbContext.USER.Where(u => u.USERNAME == userName && u.DELETEDFLAG == false).FirstOrDefault();
+
+            }
+
+        }
+    }
+}
+
+
+
+<div class="custom-site-header">
+    <div class="mb-3 mx-auto custom-site-logo">
+        <img src=@ViewBag.avatar alt="Avatar" />
+    </div>
+    <div class="dropdown custom-logo-badges">
+        <a class="custom-btn-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-gears text-muted" style="font-size: 2.2rem;"></i>
+        </a>
+        <div class="dropdown-menu custom-dropdown-meunu" aria-labelledby="dropdownMenuLink">
+            @if (currentUser != null)
+            {
+                if (currentUser.USERTYPE == "Admin")
+                {
+                    <a class="dropdown-item custom-dropdown-item" href=@Url.Action("Index", "AdminProfile", new {area = "Admin" })>View Profile</a>
+                }
+                else if (currentUser.USERTYPE.ToLower() == "doctor")
+                {
+                    <a class="dropdown-item custom-dropdown-item" href=@Url.Action("Index", "Profile")>View Profile</a>
+                    <a class="dropdown-item custom-dropdown-item" href="@Url.Action("ChangePassword", "Profile" ,new { area = "Doctor"})">Change Password</a>
+                }
+                else
+                {
+                    <a class="dropdown-item custom-dropdown-item" href=@Url.Action("Index", "Profile")>View Profile</a>
+                    <a class="dropdown-item custom-dropdown-item" href="@Url.Action("ChangePassword", "Account")">Change Password</a>
+                }
+            }
+            else
+            {
+                <a class="dropdown-item custom-dropdown-item" href=@Url.Action("Index", "Profile")>View Profile</a>
+                <a class="dropdown-item custom-dropdown-item" href="@Url.Action("ChangePassword", "Account")">Change Password</a>
+            }
+
+        </div>
+    </div>
+    <h2 class="text-center" id="label-fullName">@ViewBag.Name</h2>
+</div>
+
+<nav class="custom-nav" id="custom-nav">
+    <ul>
+        @{
+            var menu = ViewBag.menu;
+            if (menu != null)
+            {
+                foreach (var item in menu)
+                {
+                    var area = item.area;
+                    var controller = item.controller;
+                    var action = item.action;
+                    if (item.active == true)
+                    {
+                        <li class="custom-nav-item active">
+                            <a href="@Url.Action(action, controller, new { area = area })" class="custom-nav-link text-nowrap">
+                                <i class="@item.icon"></i>
+                                @item.title
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="custom-nav-item">
+                            <a href="@Url.Action(action, controller, new { area = area })" class="custom-nav-link text-nowrap">
+                                <i class="@item.icon"></i>
+                                @item.title
+                            </a>
+                        </li>
+                    }
+
+                }
+            }
+        }
+
+    </ul>
+</nav>

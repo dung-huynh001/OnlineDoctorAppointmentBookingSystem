@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Appointment System</title>
+   
+    @Styles.Render("~/Content/fontawesome/css")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/sweetalert/css")
+    <link href="~/Content/css/profile.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container rounded bg-white mt-5 mb-5 pt-2">
+        <a id="btnGoToHome" role="button" class="text-muted btn-back-to-home" href="@Url.Action("Index","Manage", new {area = "Admin"})">
+            <i class="fa-solid fa-long-arrow-left"></i> <span class="text-weight-light">Back</span>
+        </a>
+        <div class="row custom-profile-wrapper">
+            <div class="col-12 col-md-12">
+                <div class="p3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="mt-2">
+                        <form class="col-12 col-md-12" id="profileForm">
+                            <div class="content-wrapper row">
+                                <div class="form-group avatar-wrapper col-12 col-sm-12 col-md-4">
+                                    <div class=" d-flex flex-wrap justify-content-center align-items-center flex-column custom-logo-wrapper">
+                                        <div class="custom-site-logo">
+                                            <img id="profilePicture" src="" alt="Your profile picture" class="img-avatar" />
+                                        </div>
+                                        <p class="mt-4 pr-5 pl-5 text-center" style="line-height: 1.2;">
+                                            <small>
+                                                <i>
+                                                    "Personalize your account with a photo. Your profile photo will appear
+                                                    on apps and devices that use your account."
+                                                </i>
+                                            </small>
+                                        </p>
+                                        <a id="btnChangePhoto" class="btn btn-secondary btn-m mt-3 text-light btn-change-img" role="button" onclick="document.getElementById('inputProfilePicture').click()">Change Photo</a>
+                                        <input name="" id="inputProfilePicture" class="form-control" type="file" accept="image/*" style="display:none"> <!-- Profile picture -->
+                                    </div>
+                                </div>
+                                <div class="info-wrapper col-12 col-sm-12 col-md-8">
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text custom-symbol"><i class="fa fa-address-book"></i></span>
+                                        </div>
+                                        <input id="fullName" name="FullName" class="form-control custom-input" disabled autocomplete="off"
+                                                data-toggle="popover" data-trigger="hover" data-placement="top"  data-content="User name (*)"
+                                               placeholder="User name (*)" type="text">
+                                    </div> <!-- User name -->
+
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text custom-symbol"><i class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <input id="email" name="Email" class="form-control custom-input" disabled autocomplete="off"
+                                               placeholder="Email address (*)" type="email">
+                                    </div> <!-- Email -->
+
+
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 mt-5 d-flex justify-content-center">
+                                    <a id="btnCancel" class="btn btn-danger mr-4 text-light" role="button">Cancel</a>
+                                    <a id="btnSave" class="btn btn-success text-light" role="button">Save Changes</a>
+                                    <a id="btnEdit" class="btn btn-primary text-light" role="button">Edit Profile</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert/js")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/admin/profile")
+
+</body>
+</html>

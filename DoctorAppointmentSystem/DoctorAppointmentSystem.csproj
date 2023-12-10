@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62473908-13EC-41FC-BA06-2018C9BE0DF5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DoctorAppointmentSystem</RootNamespace>
+    <AssemblyName>DoctorAppointmentSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44353</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.UserSecrets, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.ImageSharp.2.1.1\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.5.11.1\lib\net47\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminUserManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AppointmentManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DoctorManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DoctorScheduleManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PatientManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManageController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminProfile\AdminProfileViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUser\AdminUserCreateModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUser\AdminUserEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUser\AdminUserViewEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUser\AdminUserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AdminUser\Mapping\MapAdminUserProfile.cs" />
+    <Compile Include="Areas\Admin\Models\AppointmentIO.cs" />
+    <Compile Include="Areas\Admin\Models\AppointmentManage\AppointmentViewDetailsModel.cs" />
+    <Compile Include="Areas\Admin\Models\AppointmentManage\ApponitmentViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AppointmentManage\Mapping\MapAppointmentProfile.cs" />
+    <Compile Include="Areas\Admin\Models\DashboardIO.cs" />
+    <Compile Include="Areas\Admin\Models\DataTableModel\JqueryDatatableParam.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorIO.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorManage\DoctorCreateModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorManage\DoctorEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorManage\DoctorViewEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorManage\DoctorViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorManage\Mapping\MapDoctorProfile.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleIO.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleManage\DoctorScheduleCreateModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleManage\DoctorScheduleEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleManage\DoctorScheduleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleManage\DoctorScheduleViewEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoctorScheduleManage\Mapping\MappDoctorScheduleProfile.cs" />
+    <Compile Include="Areas\Admin\Models\PatientManage\Mapping\MapPatientProfile.cs" />
+    <Compile Include="Areas\Admin\Models\PatientManage\PatientCreateModel.cs" />
+    <Compile Include="Areas\Admin\Models\PatientManage\PatientEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\PatientManage\PatientViewEditModel.cs" />
+    <Compile Include="Areas\Admin\Models\PatientManage\PatientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserManage\Mapping\MapUserProfile.cs" />
+    <Compile Include="Areas\Admin\Models\UserManage\ResetPasswordModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserManage\UserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Validation\ValidationInput.cs" />
+    <Compile Include="Areas\Admin\Models\Validation\ValidationResult.cs" />
+    <Compile Include="Areas\Doctor\Controllers\AppointmentsController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\CancelledApptController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\CompletedApptController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\ConfirmedApptController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Doctor\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\AppointmentsDoctorIO.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\Appointment\AppointmentViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\CancelledAppointment\CancelledApptViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\CompletedAppointment\CompletedApptViewDetailsModel.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\CompletedAppointment\CompletedApptViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\Appointments\Mapping\AppointmentDoctorMappingProfile.cs" />
+    <Compile Include="Areas\Doctor\Models\ComfirmedAppt\ConfirmedApptIO.cs" />
+    <Compile Include="Areas\Doctor\Models\Home\calendarIO.cs" />
+    <Compile Include="Areas\Doctor\Models\Home\EventViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\Registration\RegistrationIO.cs" />
+    <Compile Include="Areas\Doctor\Models\ViewModels\AppointmentViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\ViewModels\DiagnosisViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\ViewModels\MedicationViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\ViewModels\MemberDetailViewModel.cs" />
+    <Compile Include="Areas\Doctor\Models\ViewModels\CreateMemberViewModel.cs" />
+    <Compile Include="Authorization\AppAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ScheduleOfDoctorsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClasses\Config.cs" />
+    <Compile Include="HelperClasses\EmailSender.cs" />
+    <Compile Include="HelperClasses\GetInfo.cs" />
+    <Compile Include="HelperClasses\Logger.cs" />
+    <Compile Include="HelperClasses\PasswordHelper.cs" />
+    <Compile Include="HelperClasses\SystemParaHelper.cs" />
+    <Compile Include="Menu\MenuItem.cs" />
+    <Compile Include="Menu\AdminMenu.cs" />
+    <Compile Include="Menu\DoctorMenu.cs" />
+    <Compile Include="Menu\RenderMenu.cs" />
+    <Compile Include="Menu\PatientMenu.cs" />
+    <Compile Include="Models\Account\AuthenQuestion\AuthenQuestionModel.cs" />
+    <Compile Include="Models\Account\ChangePasswordIO.cs" />
+    <Compile Include="Models\Account\ChangePassword\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Account\ChangePassword\VerifyAccountViewModel.cs" />
+    <Compile Include="Models\Account\LoginIO.cs" />
+    <Compile Include="Models\Account\Login\LoginViewModel.cs" />
+    <Compile Include="Models\Account\RegisterIO.cs" />
+    <Compile Include="Models\Account\Register\AuthQuestionViewModel.cs" />
+    <Compile Include="Models\Account\Register\GenderViewModel.cs" />
+    <Compile Include="Models\Account\Register\PatientViewModel.cs" />
+    <Compile Include="Models\Account\Register\UserViewModel.cs" />
+    <Compile Include="Models\Appointment\AppointmentIO.cs" />
+    <Compile Include="Models\Appointment\History\HistoryViewModel.cs" />
+    <Compile Include="Models\Appointment\MakeAppointment\AppointmentViewModel.cs" />
+    <Compile Include="Models\Appointment\MakeAppointment\DoctorViewModel.cs" />
+    <Compile Include="Models\Appointment\MakeAppointment\ScheduleViewModel.cs" />
+    <Compile Include="Models\DB\APPOINTMENT.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\APPOINTMENT_PRESCRIPTION.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\DBContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\DBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\DBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\DEPARTMENT.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\DOCTOR.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\LOG.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PATIENT.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\PRESCRIPTION.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ROLE.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\SCHEDULE.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\SYSTEM_PARA.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\USER.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profile\ProfileIO.cs" />
+    <Compile Include="Models\Profile\ProfileViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LoggerServices.cs" />
+    <Compile Include="Services\MapperService.cs" />
+    <Compile Include="Services\ServiceInterface\IloggerService.cs" />
+    <Compile Include="Services\ServiceInterface\IMapperService.cs" />
+    <Compile Include="Services\ServiceInterface\ISystemParamService.cs" />
+    <Compile Include="Services\SystemParamService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-lib\bootstrap.css" />
+    <Content Include="Content\bootstrap-lib\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-lib\jquery.dataTables.min.css" />
+    <Content Include="Content\bootstrap-lib\responsive.bootstrap.min.css" />
+    <Content Include="Content\css\Areas\Admin\admin-appointment.css" />
+    <Content Include="Content\css\Areas\Admin\dashboardAdmin.css" />
+    <Content Include="Content\css\Areas\Admin\doctor-management.css" />
+    <Content Include="Content\css\Areas\Admin\doctor-schedule-mgt.css" />
+    <Content Include="Content\css\Areas\Admin\patient-management.css" />
+    <Content Include="Content\css\Areas\Admin\user-management.css" />
+    <Content Include="Content\css\Areas\Doctor\appointmentDoctor.css" />
+    <Content Include="Content\css\Areas\Doctor\cancelledAppointment.css" />
+    <Content Include="Content\css\Areas\Doctor\completedAppointments.css" />
+    <Content Include="Content\css\Areas\Doctor\confirmedAppt.css" />
+    <Content Include="Content\css\Areas\Doctor\dashboardDoctor.css" />
+    <Content Include="Content\css\Areas\Doctor\registration.css" />
+    <Content Include="Content\css\changePassword.css" />
+    <Content Include="Content\css\custom-input.css" />
+    <Content Include="Content\css\appointmentHistory.css" />
+    <Content Include="Content\css\appointment.css" />
+    <Content Include="Content\css\profile.css" />
+    <Content Include="Content\css\scheduleOfDoctors.css" />
+    <Content Include="Content\css\Shared\bootstrap.min.css" />
+    <Content Include="Content\css\Shared\intro.css" />
+    <Content Include="Content\css\Shared\layout.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\register.css" />
+    <Content Include="Database\crebas-03072023-1654.sql" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="img\bg-img-desktop-md.jpg" />
+    <Content Include="img\bg-img-mobile.jpg" />
+    <Content Include="img\bg-img-tablet.jpg" />
+    <Content Include="img\bg-img-desktop-lg.jpg" />
+    <Content Include="img\carousel-patient-01.jpg" />
+    <Content Include="img\carousel-patient-02.jpg" />
+    <Content Include="img\carousel-patient-03.jpg" />
+    <Content Include="img\CUSC-Logo-Series.png" />
+    <Content Include="img\default-user-image.png" />
+    <Content Include="img\doctor-avatar-01.jpg" />
+    <Content Include="img\empty.jpg" />
+    <Content Include="img\login-intro-img.png" />
+    <Content Include="img\medical-appointment.ico" />
+    <Content Include="img\person-avatar-01.jpg" />
+    <Content Include="img\person-avatar-02.png" />
+    <Content Include="lib\bootstrap-sweetalert\sweetalert.css" />
+    <Content Include="lib\bootstrap-sweetalert\sweetalert.js" />
+    <Content Include="lib\bootstrap-sweetalert\sweetalert.min.css" />
+    <Content Include="lib\bootstrap-sweetalert\sweetalert.min.js" />
+    <Content Include="lib\chart.js\Chart.bundle.js" />
+    <Content Include="lib\chart.js\Chart.bundle.min.js" />
+    <Content Include="lib\chart.js\Chart.js" />
+    <Content Include="lib\chart.js\Chart.min.js" />
+    <Content Include="lib\font-awesome\css\all.css" />
+    <Content Include="lib\font-awesome\css\all.min.css" />
+    <Content Include="lib\font-awesome\css\brands.css" />
+    <Content Include="lib\font-awesome\css\brands.min.css" />
+    <Content Include="lib\font-awesome\css\fontawesome.css" />
+    <Content Include="lib\font-awesome\css\fontawesome.min.css" />
+    <Content Include="lib\font-awesome\css\regular.css" />
+    <Content Include="lib\font-awesome\css\regular.min.css" />
+    <Content Include="lib\font-awesome\css\solid.css" />
+    <Content Include="lib\font-awesome\css\solid.min.css" />
+    <Content Include="lib\font-awesome\css\svg-with-js.css" />
+    <Content Include="lib\font-awesome\css\svg-with-js.min.css" />
+    <Content Include="lib\font-awesome\css\v4-font-face.css" />
+    <Content Include="lib\font-awesome\css\v4-font-face.min.css" />
+    <Content Include="lib\font-awesome\css\v4-shims.css" />
+    <Content Include="lib\font-awesome\css\v4-shims.min.css" />
+    <Content Include="lib\font-awesome\css\v5-font-face.css" />
+    <Content Include="lib\font-awesome\css\v5-font-face.min.css" />
+    <Content Include="lib\font-awesome\js\all.js" />
+    <Content Include="lib\font-awesome\js\all.min.js" />
+    <Content Include="lib\font-awesome\js\brands.js" />
+    <Content Include="lib\font-awesome\js\brands.min.js" />
+    <Content Include="lib\font-awesome\js\conflict-detection.js" />
+    <Content Include="lib\font-awesome\js\conflict-detection.min.js" />
+    <Content Include="lib\font-awesome\js\fontawesome.js" />
+    <Content Include="lib\font-awesome\js\fontawesome.min.js" />
+    <Content Include="lib\font-awesome\js\regular.js" />
+    <Content Include="lib\font-awesome\js\regular.min.js" />
+    <Content Include="lib\font-awesome\js\solid.js" />
+    <Content Include="lib\font-awesome\js\solid.min.js" />
+    <Content Include="lib\font-awesome\js\v4-shims.js" />
+    <Content Include="lib\font-awesome\js\v4-shims.min.js" />
+    <Content Include="lib\font-awesome\sprites\brands.svg" />
+    <Content Include="lib\font-awesome\sprites\regular.svg" />
+    <Content Include="lib\font-awesome\sprites\solid.svg" />
+    <Content Include="lib\fullcalendar\index.global.js" />
+    <Content Include="lib\fullcalendar\index.global.min.js" />
+    <Content Include="lib\fullcalendar\index.js" />
+    <Content Include="lib\fullcalendar\index.min.js" />
+    <Content Include="lib\moment.js\moment.js" />
+    <Content Include="lib\moment.js\moment.min.js" />
+    <Content Include="lib\popper.js\umd\popper.js" />
+    <Content Include="lib\popper.js\umd\popper.min.js" />
+    <Content Include="lib\select2-bootstrap-css\select2-bootstrap.css" />
+    <Content Include="lib\select2-bootstrap-css\select2-bootstrap.min.css" />
+    <Content Include="lib\select2\css\select2.css" />
+    <Content Include="lib\select2\css\select2.min.css" />
+    <Content Include="lib\select2\js\i18n\af.js" />
+    <Content Include="lib\select2\js\i18n\af.min.js" />
+    <Content Include="lib\select2\js\i18n\ar.js" />
+    <Content Include="lib\select2\js\i18n\ar.min.js" />
+    <Content Include="lib\select2\js\i18n\az.js" />
+    <Content Include="lib\select2\js\i18n\az.min.js" />
+    <Content Include="lib\select2\js\i18n\bg.js" />
+    <Content Include="lib\select2\js\i18n\bg.min.js" />
+    <Content Include="lib\select2\js\i18n\bn.js" />
+    <Content Include="lib\select2\js\i18n\bn.min.js" />
+    <Content Include="lib\select2\js\i18n\bs.js" />
+    <Content Include="lib\select2\js\i18n\bs.min.js" />
+    <Content Include="lib\select2\js\i18n\ca.js" />
+    <Content Include="lib\select2\js\i18n\ca.min.js" />
+    <Content Include="lib\select2\js\i18n\cs.js" />
+    <Content Include="lib\select2\js\i18n\cs.min.js" />
+    <Content Include="lib\select2\js\i18n\da.js" />
+    <Content Include="lib\select2\js\i18n\da.min.js" />
+    <Content Include="lib\select2\js\i18n\de.js" />
+    <Content Include="lib\select2\js\i18n\de.min.js" />
+    <Content Include="lib\select2\js\i18n\dsb.js" />
+    <Content Include="lib\select2\js\i18n\dsb.min.js" />
+    <Content Include="lib\select2\js\i18n\el.js" />
+    <Content Include="lib\select2\js\i18n\el.min.js" />
+    <Content Include="lib\select2\js\i18n\en.js" />
+    <Content Include="lib\select2\js\i18n\en.min.js" />
+    <Content Include="lib\select2\js\i18n\es.js" />
+    <Content Include="lib\select2\js\i18n\es.min.js" />
+    <Content Include="lib\select2\js\i18n\et.js" />
+    <Content Include="lib\select2\js\i18n\et.min.js" />
+    <Content Include="lib\select2\js\i18n\eu.js" />
+    <Content Include="lib\select2\js\i18n\eu.min.js" />
+    <Content Include="lib\select2\js\i18n\fa.js" />
+    <Content Include="lib\select2\js\i18n\fa.min.js" />
+    <Content Include="lib\select2\js\i18n\fi.js" />
+    <Content Include="lib\select2\js\i18n\fi.min.js" />
+    <Content Include="lib\select2\js\i18n\fr.js" />
+    <Content Include="lib\select2\js\i18n\fr.min.js" />
+    <Content Include="lib\select2\js\i18n\gl.js" />
+    <Content Include="lib\select2\js\i18n\gl.min.js" />
+    <Content Include="lib\select2\js\i18n\he.js" />
+    <Content Include="lib\select2\js\i18n\he.min.js" />
+    <Content Include="lib\select2\js\i18n\hi.js" />
+    <Content Include="lib\select2\js\i18n\hi.min.js" />
+    <Content Include="lib\select2\js\i18n\hr.js" />
+    <Content Include="lib\select2\js\i18n\hr.min.js" />
+    <Content Include="lib\select2\js\i18n\hsb.js" />
+    <Content Include="lib\select2\js\i18n\hsb.min.js" />
+    <Content Include="lib\select2\js\i18n\hu.js" />
+    <Content Include="lib\select2\js\i18n\hu.min.js" />
+    <Content Include="lib\select2\js\i18n\hy.js" />
+    <Content Include="lib\select2\js\i18n\hy.min.js" />
+    <Content Include="lib\select2\js\i18n\id.js" />
+    <Content Include="lib\select2\js\i18n\id.min.js" />
+    <Content Include="lib\select2\js\i18n\is.js" />
+    <Content Include="lib\select2\js\i18n\is.min.js" />
+    <Content Include="lib\select2\js\i18n\it.js" />
+    <Content Include="lib\select2\js\i18n\it.min.js" />
+    <Content Include="lib\select2\js\i18n\ja.js" />
+    <Content Include="lib\select2\js\i18n\ja.min.js" />
+    <Content Include="lib\select2\js\i18n\ka.js" />
+    <Content Include="lib\select2\js\i18n\ka.min.js" />
+    <Content Include="lib\select2\js\i18n\km.js" />
+    <Content Include="lib\select2\js\i18n\km.min.js" />
+    <Content Include="lib\select2\js\i18n\ko.js" />
+    <Content Include="lib\select2\js\i18n\ko.min.js" />
+    <Content Include="lib\select2\js\i18n\lt.js" />
+    <Content Include="lib\select2\js\i18n\lt.min.js" />
+    <Content Include="lib\select2\js\i18n\lv.js" />
+    <Content Include="lib\select2\js\i18n\lv.min.js" />
+    <Content Include="lib\select2\js\i18n\mk.js" />
+    <Content Include="lib\select2\js\i18n\mk.min.js" />
+    <Content Include="lib\select2\js\i18n\ms.js" />
+    <Content Include="lib\select2\js\i18n\ms.min.js" />
+    <Content Include="lib\select2\js\i18n\nb.js" />
+    <Content Include="lib\select2\js\i18n\nb.min.js" />
+    <Content Include="lib\select2\js\i18n\ne.js" />
+    <Content Include="lib\select2\js\i18n\ne.min.js" />
+    <Content Include="lib\select2\js\i18n\nl.js" />
+    <Content Include="lib\select2\js\i18n\nl.min.js" />
+    <Content Include="lib\select2\js\i18n\pl.js" />
+    <Content Include="lib\select2\js\i18n\pl.min.js" />
+    <Content Include="lib\select2\js\i18n\ps.js" />
+    <Content Include="lib\select2\js\i18n\ps.min.js" />
+    <Content Include="lib\select2\js\i18n\pt-BR.js" />
+    <Content Include="lib\select2\js\i18n\pt-BR.min.js" />
+    <Content Include="lib\select2\js\i18n\pt.js" />
+    <Content Include="lib\select2\js\i18n\pt.min.js" />
+    <Content Include="lib\select2\js\i18n\ro.js" />
+    <Content Include="lib\select2\js\i18n\ro.min.js" />
+    <Content Include="lib\select2\js\i18n\ru.js" />
+    <Content Include="lib\select2\js\i18n\ru.min.js" />
+    <Content Include="lib\select2\js\i18n\sk.js" />
+    <Content Include="lib\select2\js\i18n\sk.min.js" />
+    <Content Include="lib\select2\js\i18n\sl.js" />
+    <Content Include="lib\select2\js\i18n\sl.min.js" />
+    <Content Include="lib\select2\js\i18n\sq.js" />
+    <Content Include="lib\select2\js\i18n\sq.min.js" />
+    <Content Include="lib\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="lib\select2\js\i18n\sr-Cyrl.min.js" />
+    <Content Include="lib\select2\js\i18n\sr.js" />
+    <Content Include="lib\select2\js\i18n\sr.min.js" />
+    <Content Include="lib\select2\js\i18n\sv.js" />
+    <Content Include="lib\select2\js\i18n\sv.min.js" />
+    <Content Include="lib\select2\js\i18n\th.js" />
+    <Content Include="lib\select2\js\i18n\th.min.js" />
+    <Content Include="lib\select2\js\i18n\tk.js" />
+    <Content Include="lib\select2\js\i18n\tk.min.js" />
+    <Content Include="lib\select2\js\i18n\tr.js" />
+    <Content Include="lib\select2\js\i18n\tr.min.js" />
+    <Content Include="lib\select2\js\i18n\uk.js" />
+    <Content Include="lib\select2\js\i18n\uk.min.js" />
+    <Content Include="lib\select2\js\i18n\vi.js" />
+    <Content Include="lib\select2\js\i18n\vi.min.js" />
+    <Content Include="lib\select2\js\i18n\zh-CN.js" />
+    <Content Include="lib\select2\js\i18n\zh-CN.min.js" />
+    <Content Include="lib\select2\js\i18n\zh-TW.js" />
+    <Content Include="lib\select2\js\i18n\zh-TW.min.js" />
+    <Content Include="lib\select2\js\select2.full.js" />
+    <Content Include="lib\select2\js\select2.full.min.js" />
+    <Content Include="lib\select2\js\select2.js" />
+    <Content Include="lib\select2\js\select2.min.js" />
+    <Content Include="lib\sweetalert2\sweetalert2.all.js" />
+    <Content Include="lib\sweetalert2\sweetalert2.all.min.js" />
+    <Content Include="lib\sweetalert2\sweetalert2.css" />
+    <Content Include="lib\sweetalert2\sweetalert2.js" />
+    <Content Include="lib\sweetalert2\sweetalert2.min.css" />
+    <Content Include="lib\sweetalert2\sweetalert2.min.js" />
+    <Content Include="lib\tooltip.js\esm\tooltip.js" />
+    <Content Include="lib\tooltip.js\esm\tooltip.min.js" />
+    <Content Include="lib\tooltip.js\tooltip.js" />
+    <Content Include="lib\tooltip.js\tooltip.min.js" />
+    <Content Include="lib\tooltip.js\umd\tooltip.js" />
+    <Content Include="lib\tooltip.js\umd\tooltip.min.js" />
+    <Content Include="Models\DB\DBContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB\DBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap-lib-js\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\dataTables.responsive.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery-3.4.1.js" />
+    <Content Include="Scripts\bootstrap-lib-js\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap-lib-js\bootstrap.bundle.min.js.map" />
+    <Content Include="Areas\Admin\Views\AdminUserManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DoctorScheduleManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AppointmentManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminProfile\Index.cshtml" />
+    <Content Include="Areas\Doctor\Views\web.config" />
+    <Content Include="Areas\Doctor\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Doctor\Views\Appointments\Index.cshtml" />
+    <Content Include="Areas\Doctor\Views\ConfirmedAppt\Index.cshtml" />
+    <Content Include="Areas\Doctor\Views\Appointments\MemberDetails.cshtml" />
+    <Content Include="Areas\Doctor\Views\ConfirmedAppt\AppointmentDetails.cshtml" />
+    <Content Include="Areas\Doctor\Views\Registration\Index.cshtml" />
+    <Content Include="lib\moment.js\moment.min.js.map" />
+    <Content Include="lib\popper.js\umd\popper.js.map" />
+    <Content Include="lib\popper.js\umd\popper.min.js.map" />
+    <Content Include="lib\tooltip.js\esm\tooltip.js.map" />
+    <Content Include="lib\tooltip.js\esm\tooltip.min.js.map" />
+    <Content Include="lib\tooltip.js\tooltip.js.map" />
+    <Content Include="lib\tooltip.js\tooltip.min.js.map" />
+    <Content Include="lib\tooltip.js\umd\tooltip.js.map" />
+    <Content Include="lib\tooltip.js\umd\tooltip.min.js.map" />
+    <Content Include="Areas\Doctor\Views\Profile\ChangePassword.cshtml" />
+    <Content Include="Areas\Doctor\Views\CompletedAppt\Index.cshtml" />
+    <Content Include="Areas\Doctor\Views\CancelledAppt\Index.cshtml" />
+    <Content Include="Scripts\bootstrap-lib-js\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery-3.4.1.min.map" />
+    <Content Include="Content\bootstrap-lib\bootstrap.css.map" />
+    <Content Include="lib\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <EntityDeploy Include="Models\DB\DBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\DBContext.edmx.diagram">
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\bootstrap-lib-js\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery.validate.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery.validate.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\bootstrap-lib-js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\bootstrap-lib-js\modernizr-2.8.3.js" />
+    <Content Include="Scripts\bootstrap-lib-js\modernizr-2.8.3.min.js" />
+    <Content Include="Scripts\js\Areas\Doctor\appointmentDetails.js" />
+    <Content Include="Scripts\js\Areas\Doctor\appointmentsDoctor.js" />
+    <Content Include="Scripts\js\Areas\Admin\adminmanagement.js" />
+    <Content Include="Scripts\js\Areas\Admin\adminProfile.js" />
+    <Content Include="Scripts\js\Areas\Admin\appointmentManagement.admin.js" />
+    <Content Include="Scripts\js\Areas\Admin\doctormanagement.js" />
+    <Content Include="Scripts\js\Areas\Admin\doctorScheduleManagment.admin.js" />
+    <Content Include="Scripts\js\Areas\Admin\managementDashboard.js" />
+    <Content Include="Scripts\js\Areas\Admin\patientmanagement.js" />
+    <Content Include="Scripts\js\Areas\Admin\usermanagement.js" />
+    <Content Include="Scripts\js\Areas\Doctor\cancelledAppointments.js" />
+    <Content Include="Scripts\js\Areas\Doctor\changeDoctorPassword.js" />
+    <Content Include="Scripts\js\Areas\Doctor\completedAppointments.js" />
+    <Content Include="Scripts\js\Areas\Doctor\confirmedAppt.js" />
+    <Content Include="Scripts\js\Areas\Doctor\dashboard.js" />
+    <Content Include="Scripts\js\Areas\Doctor\memberDetails.js" />
+    <Content Include="Scripts\js\Areas\Doctor\registration.js" />
+    <Content Include="Scripts\js\authenQuestions.js" />
+    <Content Include="Scripts\js\changePassword.js" />
+    <Content Include="Scripts\js\appointmentHistory.js" />
+    <Content Include="Scripts\js\intro.js" />
+    <Content Include="Scripts\js\layout.js" />
+    <Content Include="Scripts\js\appointment.js" />
+    <Content Include="Areas\Admin\Views\DoctorManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PatientManage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="lib\bootstrap-sweetalert\sweetalert.min.css.map" />
+    <Content Include="Areas\Admin\Views\UserManage\Index.cshtml" />
+    <Content Include="Content\bootstrap-lib\bootstrap.min.css.map" />
+    <Content Include="Scripts\bootstrap-lib-js\popper.min.js.map" />
+    <Content Include="Scripts\js\login.js" />
+    <Content Include="Scripts\bootstrap-lib-js\popper.min.js" />
+    <Content Include="Scripts\js\profile.js" />
+    <Content Include="Scripts\js\register.js" />
+    <Content Include="Scripts\js\scheduleOfDoctors.js" />
+    <Content Include="Scripts\js\Shared\intro.js" />
+    <Content Include="Scripts\js\Shared\layout.js" />
+    <Content Include="Scripts\js\validateInput.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Intro.cshtml" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Views\Shared\_MenuView.cshtml" />
+    <Content Include="Views\Appointment\MakeAppointment.cshtml" />
+    <Content Include="Views\Appointment\History.cshtml" />
+    <Content Include="Views\Shared\_CarouselView.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\ScheduleOfDoctors\Index.cshtml" />
+    <Content Include="Views\Account\Activate.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\AuthenQuestion.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Doctor\Data\" />
+    <Folder Include="Areas\Doctor\Views\Shared\" />
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\bootstrap-lib-js\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53523</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44353/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

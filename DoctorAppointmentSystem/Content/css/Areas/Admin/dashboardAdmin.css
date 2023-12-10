@@ -1,0 +1,43 @@
+﻿
+.custom-card{
+  
+}
+
+@media (max-width: 1610px) {
+    .custom-card-title {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 1470px) {
+    .custom-card-title{
+        font-size: 0.8em;
+    }
+}
+@media (max-width: 400px) {
+    .custom-card-title {
+        font-size: 0.7em;
+    }
+}
+@media (max-width: 360px) {
+    .custom-card-title {
+        font-size: 0.6em;
+    }
+}
+
+
+.custom-chart {
+    padding: 0;
+    
+}
+@media (max-width: 400px) {
+    .custom-chart {
+        height: 40vh !important;
+        width: auto !important;
+    }
+    #mychart {
+        height: 40vh !important;
+    }
+}
+#mychart {
+}
